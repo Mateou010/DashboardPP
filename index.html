@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Reforma Electoral Integral</title>
+    <meta
+      name="description"
+      content="Dashboard interactivo del proyecto de Reforma Electoral Integral (INLEG-2026-40722643-APN-PTE)."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="app-header__inner">
+        <p class="eyebrow">Observatorio Legislativo</p>
+        <h1>Reforma Electoral Integral</h1>
+        <p id="meta-line" class="meta-line"></p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="section section--lead reveal">
+        <div>
+          <p class="section-label">Qué cambia</p>
+          <h2>
+            Vista operativa de cambios en partidos políticos, régimen electoral,
+            financiamiento y Parlasur.
+          </h2>
+        </div>
+        <div class="lead-actions">
+          <a href="#explorador">Ir al explorador</a>
+          <a href="#comparativas">Ver comparativas clave</a>
+        </div>
+      </section>
+
+      <section class="section reveal" id="kpis">
+        <div class="section-top">
+          <p class="section-label">Datos base</p>
+          <h3>Escala del sistema electoral y costos recientes</h3>
+        </div>
+        <div id="kpi-list" class="kpi-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section reveal" id="comparativas">
+        <div class="section-top">
+          <p class="section-label">Comparativas</p>
+          <h3>Antes vs propuesta</h3>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tema</th>
+                <th>Régimen actual</th>
+                <th>Proyecto</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section reveal" id="explorador">
+        <div class="section-top">
+          <p class="section-label">Explorador</p>
+          <h3>Cambios por bloque temático</h3>
+        </div>
+        <div class="explorer-controls">
+          <div id="topic-filters" class="topic-filters" role="tablist" aria-label="Filtros por bloque"></div>
+          <label class="search-input">
+            <span>Buscar cambio</span>
+            <input id="search-input" type="search" placeholder="Ejemplo: PASO, alianzas, aportes" />
+          </label>
+        </div>
+        <div id="change-list" class="change-list" aria-live="polite"></div>
+      </section>
+
+      <section class="section reveal" id="marco">
+        <div class="section-top">
+          <p class="section-label">Marco normativo</p>
+          <h3>Títulos del proyecto y puntos de referencia</h3>
+        </div>
+        <ul id="title-list" class="title-list"></ul>
+      </section>
+
+      <section class="section reveal" id="fuentes">
+        <div class="section-top">
+          <p class="section-label">Fuentes</p>
+          <h3>Archivos utilizados en esta versión</h3>
+        </div>
+        <ul id="source-list" class="source-list"></ul>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>
+        Este tablero resume cambios normativos y operativos del proyecto.
+        Recomendado: validación legal final artículo por artículo antes de publicación institucional.
+      </p>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
