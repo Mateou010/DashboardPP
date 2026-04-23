@@ -36,3 +36,24 @@ Este proyecto se puede desplegar directamente como sitio estático desde el root
 
 - Comando manual: `vercel deploy . -y`
 - Producción (solo cuando corresponda): `vercel deploy . --prod -y`
+
+## Estado actual de deploy
+
+- Preview activa: `https://dashboard-reforma-electoral-integral-889dvxc5y.vercel.app`
+- Dominio productivo actual: `https://dashboard-reforma-electoral-integra.vercel.app`
+
+## GitHub + Vercel para trabajo en equipo
+
+Se agregó el workflow `.github/workflows/vercel-deploy.yml` para:
+
+- Deploy de preview en cada Pull Request.
+- Deploy productivo al hacer push en `main`.
+
+### Configuración mínima en GitHub (una sola vez)
+
+1. Crear el repositorio en GitHub.
+2. Subir este proyecto.
+3. En `Settings > Secrets and variables > Actions`, crear el secret:
+   - `VERCEL_TOKEN`: token de Vercel con permisos de deploy en el proyecto.
+
+Con eso, los deploys quedan automáticos para el equipo.
