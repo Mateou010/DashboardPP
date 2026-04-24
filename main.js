@@ -8,6 +8,7 @@ const partiesPie = document.querySelector("#parties-pie");
 const partiesLegend = document.querySelector("#parties-legend");
 const partiesTotal = document.querySelector("#parties-total");
 const costsBars = document.querySelector("#costs-bars");
+const keyJumpsBars = document.querySelector("#key-jumps-bars");
 const segmentJump = document.querySelector("#segment-jump");
 const segmentBlocks = document.querySelector("#segment-blocks");
 const titleList = document.querySelector("#title-list");
@@ -146,13 +147,66 @@ function renderCostBars() {
   costsBars.replaceChildren(fragment);
 }
 
+function renderKeyJumps() {
+  const data = dashboardData.charts.keyJumps;
+  const maxValue = Math.max(...data.map((item) => Math.max(item.beforeValue, item.nowValue)));
+  const fragment = document.createDocumentFragment();
+
+  data.forEach((item) => {
+    const row = document.createElement("article");
+    row.className = "bar-row";
+
+    const head = document.createElement("div");
+    head.className = "bar-row__head";
+
+    const label = document.createElement("span");
+    label.textContent = item.label;
+
+    const value = document.createElement("strong");
+    value.textContent = `${item.beforeText} → ${item.nowText}`;
+
+    head.append(label, value);
+
+    const beforeTrack = document.createElement("div");
+    const beforeLabel = document.createElement("span");
+    beforeLabel.className = "bar-subtitle";
+    beforeLabel.textContent = `Antes: ${item.beforeText}`;
+    row.appendChild(beforeLabel);
+
+    beforeTrack.className = "bar-track";
+    const beforeFill = document.createElement("span");
+    beforeFill.className = "bar-fill";
+    beforeFill.style.setProperty("--width", `${Math.max((item.beforeValue / maxValue) * 100, 3)}%`);
+    beforeFill.style.setProperty("--color", "#87a6cd");
+    beforeTrack.appendChild(beforeFill);
+
+    const nowTrack = document.createElement("div");
+    const nowLabel = document.createElement("span");
+    nowLabel.className = "bar-subtitle";
+    nowLabel.textContent = `Ahora: ${item.nowText}`;
+    row.appendChild(nowLabel);
+
+    nowTrack.className = "bar-track";
+    const nowFill = document.createElement("span");
+    nowFill.className = "bar-fill";
+    nowFill.style.setProperty("--width", `${Math.max((item.nowValue / maxValue) * 100, 3)}%`);
+    nowFill.style.setProperty("--color", "#1f4e8c");
+    nowTrack.appendChild(nowFill);
+
+    row.append(head, beforeTrack, nowTrack);
+    fragment.appendChild(row);
+  });
+
+  keyJumpsBars.replaceChildren(fragment);
+}
+
 function renderSegmentJump() {
   const fragment = document.createDocumentFragment();
 
   dashboardData.segmentGroups.forEach((group, index) => {
     const link = document.createElement("a");
     link.href = `#segmento-${group.id}`;
-    link.textContent = `S${index + 1} · ${group.title.replace("Segmento ", "").replace(/\s·\s/, " ")}`;
+    link.textContent = `S${index + 1} · ${group.title.split("·")[1].trim()}`;
     fragment.appendChild(link);
   });
 
@@ -181,7 +235,9 @@ function renderSegmentBlocks() {
     const items = document.createElement("div");
     items.className = "segment-items";
 
-    group.items.forEach((item) => {
+    [...group.items]
+      .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99))
+      .forEach((item) => {
       const article = document.createElement("article");
       article.className = "segment-item";
 
@@ -206,7 +262,7 @@ function renderSegmentBlocks() {
       matrix.append(before, now, example);
       article.append(itemTitle, matrix);
       items.appendChild(article);
-    });
+      });
 
     block.append(head, items);
     fragment.appendChild(block);
@@ -277,6 +333,7 @@ function init() {
   renderKpis();
   renderPartiesPie();
   renderCostBars();
+  renderKeyJumps();
   renderSegmentJump();
   renderSegmentBlocks();
   renderLegalFramework();

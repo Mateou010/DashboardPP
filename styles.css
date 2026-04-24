@@ -295,6 +295,12 @@ h1 {
   overflow: hidden;
 }
 
+.bar-subtitle {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
 .bar-fill {
   display: block;
   height: 100%;
