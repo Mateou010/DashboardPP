@@ -11,7 +11,6 @@ const costsBars = document.querySelector("#costs-bars");
 const comparisonCards = document.querySelector("#comparison-cards");
 const topicFilters = document.querySelector("#topic-filters");
 const changeList = document.querySelector("#change-list");
-const searchInput = document.querySelector("#search-input");
 const titleList = document.querySelector("#title-list");
 const sourceList = document.querySelector("#source-list");
 
@@ -47,13 +46,6 @@ function formatMillions(value) {
 
 function sectionShortLabel(label) {
   return label.replace(/^\d+\.\s*/, "");
-}
-
-function normalizeText(value) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
 }
 
 function buildMetaLine() {
@@ -255,7 +247,6 @@ function renderTopicFilters() {
 }
 
 function renderChanges() {
-  const query = normalizeText(searchInput.value.trim());
   const fragment = document.createDocumentFragment();
   let results = 0;
 
@@ -265,12 +256,6 @@ function renderChanges() {
     }
 
     section.notes.forEach((note) => {
-      const searchable = normalizeText(`${section.label} ${note.title} ${note.detail}`);
-
-      if (query && !searchable.includes(query)) {
-        return;
-      }
-
       const details = document.createElement("details");
       details.className = "change-item";
 
@@ -365,10 +350,6 @@ function renderSources() {
   sourceList.replaceChildren(fragment);
 }
 
-function setupSearchListener() {
-  searchInput.addEventListener("input", renderChanges);
-}
-
 function setupRevealAnimation() {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -397,7 +378,6 @@ function init() {
   renderChanges();
   renderLegalFramework();
   renderSources();
-  setupSearchListener();
   setupRevealAnimation();
 }
 
