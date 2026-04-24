@@ -1,4 +1,5 @@
 import { dashboardData } from "../data/lawData";
+import SegmentsExplorer from "../components/SegmentsExplorer";
 
 const numberFormatter = new Intl.NumberFormat("es-AR");
 
@@ -43,8 +44,90 @@ function buildPieGradient(items) {
 
   return {
     total,
-    background: `conic-gradient(${slices.join(",")})`
+    background: `conic-gradient(${slices.join(",")})`,
   };
+}
+
+/* ---------- Iconos inline ---------- */
+
+function PieIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M21 12A9 9 0 1 1 12 3v9h9z" />
+      <path d="M21 12a9 9 0 0 0-9-9v9z" />
+    </svg>
+  );
+}
+
+function BarsIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 20V10" />
+      <path d="M10 20V4" />
+      <path d="M16 20v-7" />
+      <path d="M22 20H2" />
+    </svg>
+  );
+}
+
+function ScaleIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3v18" />
+      <path d="M6 8h12" />
+      <path d="M3 14l3-6 3 6a3 3 0 0 1-6 0z" />
+      <path d="M15 14l3-6 3 6a3 3 0 0 1-6 0z" />
+    </svg>
+  );
+}
+
+function ArrowIcon({ size = 20 }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="M13 6l6 6-6 6" />
+    </svg>
+  );
 }
 
 export default function HomePage() {
@@ -54,7 +137,7 @@ export default function HomePage() {
 
   const partiesPie = buildPieGradient(parties);
   const maxCost = Math.max(...costs.map((item) => item.value));
-  const maxJump = Math.max(...jumps.map((item) => Math.max(item.beforeValue, item.nowValue)));
+  const sortedCosts = [...costs].sort((a, b) => b.value - a.value);
 
   return (
     <>
@@ -78,7 +161,7 @@ export default function HomePage() {
             </h2>
           </div>
           <div className="lead-actions">
-            <a href="#segmentos">Ir a segmentos</a>
+            <a href="#segmentos">Ir a antes vs ahora</a>
             <a href="#graficos">Ir a gráficos</a>
           </div>
         </section>
@@ -98,34 +181,69 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ---------- Visualizaciones ---------- */}
+
         <section className="section reveal is-visible" id="graficos">
           <div className="section-top">
             <p className="section-label">Visualizaciones</p>
             <h3>Composición del sistema y magnitudes de gasto</h3>
+            <p className="section-helper">
+              Tres lecturas visuales: cuántos partidos componen el sistema, cuánto
+              cuestan las elecciones y qué umbrales cambian con la reforma.
+            </p>
           </div>
+
           <div className="chart-grid">
-            <article className="chart-card">
-              <h4>Composición estimada de partidos vigentes</h4>
-              <p className="chart-caption">Relación entre partidos nacionales y distritales.</p>
-              <div className="pie-layout">
-                <div className="pie-chart" style={{ background: partiesPie.background }}>
-                  <span>
-                    <strong>{numberFormatter.format(partiesPie.total)}</strong>
-                    partidos estimados
-                  </span>
+            {/* Donut: composición de partidos */}
+            <article className="chart-card chart-card--donut">
+              <header className="chart-header">
+                <div className="chart-icon">
+                  <PieIcon />
                 </div>
-                <ul className="chart-legend">
+                <div className="chart-header-text">
+                  <p className="chart-kicker">Composición</p>
+                  <h4>Partidos vigentes estimados</h4>
+                </div>
+              </header>
+              <p className="chart-caption">
+                Distribución entre partidos nacionales y distritales en el padrón actual.
+              </p>
+
+              <div className="pie-layout">
+                <div className="pie-wrap">
+                  <div className="pie-chart" style={{ background: partiesPie.background }} />
+                  <div className="pie-center">
+                    <div>
+                      <strong>{numberFormatter.format(partiesPie.total)}</strong>
+                      <span>Partidos</span>
+                    </div>
+                  </div>
+                </div>
+                <ul className="donut-legend">
                   {parties.map((item) => {
-                    const percentage = ((item.value / partiesPie.total) * 100).toFixed(1);
+                    const share = (item.value / partiesPie.total) * 100;
                     return (
                       <li key={item.label}>
-                        <span className="legend-left">
-                          <span className="legend-dot" style={{ background: item.color }}></span>
-                          <span>{item.label}</span>
-                        </span>
-                        <span className="legend-value">
-                          {numberFormatter.format(item.value)} ({percentage}%)
-                        </span>
+                        <div className="donut-legend-head">
+                          <span className="donut-legend-head-left">
+                            <span
+                              className="legend-swatch"
+                              style={{ background: item.color }}
+                            />
+                            <span>{item.label}</span>
+                          </span>
+                          <span className="donut-legend-value">
+                            {numberFormatter.format(item.value)} · {share.toFixed(1)}%
+                          </span>
+                        </div>
+                        <div className="donut-legend-share">
+                          <span
+                            style={{
+                              width: `${share}%`,
+                              background: item.color,
+                            }}
+                          />
+                        </div>
                       </li>
                     );
                   })}
@@ -133,117 +251,111 @@ export default function HomePage() {
               </div>
             </article>
 
-            <article className="chart-card">
-              <h4>Costos electorales recientes</h4>
-              <p className="chart-caption">Montos en millones de ARS para comparar niveles de gasto.</p>
-              <div className="bar-chart">
-                {costs.map((item) => (
-                  <article className="bar-row" key={item.label}>
-                    <div className="bar-row__head">
-                      <span>{item.label}</span>
-                      <strong>{formatMillions(item.value)}</strong>
+            {/* Barras ranqueadas: costos */}
+            <article className="chart-card chart-card--bars">
+              <header className="chart-header">
+                <div className="chart-icon">
+                  <BarsIcon />
+                </div>
+                <div className="chart-header-text">
+                  <p className="chart-kicker">Magnitudes de gasto</p>
+                  <h4>Costos electorales recientes</h4>
+                </div>
+              </header>
+              <p className="chart-caption">
+                Comparación ordenada, en millones de ARS, de los principales rubros de gasto.
+              </p>
+
+              <div className="ranked-list">
+                {sortedCosts.map((item, index) => (
+                  <article className="ranked-row" key={item.label}>
+                    <div
+                      className={`rank-badge${index === 0 ? " rank-badge--top" : ""}`}
+                      aria-hidden="true"
+                    >
+                      {index + 1}
                     </div>
-                    <div className="bar-track">
-                      <span
-                        className="bar-fill"
-                        style={{
-                          width: `${Math.max((item.value / maxCost) * 100, 3)}%`,
-                          background: item.color
-                        }}
-                      ></span>
+                    <div className="ranked-body">
+                      <div className="ranked-head">
+                        <span>{item.label}</span>
+                        <strong>{formatMillions(item.value)}</strong>
+                      </div>
+                      <div className="bar-track">
+                        <span
+                          className="bar-fill"
+                          style={{
+                            width: `${Math.max((item.value / maxCost) * 100, 3)}%`,
+                            background: item.color,
+                          }}
+                        />
+                      </div>
                     </div>
                   </article>
                 ))}
               </div>
             </article>
 
-            <article className="chart-card">
-              <h4>Saltos normativos clave (antes vs ahora)</h4>
-              <p className="chart-caption">Cambios numéricos en umbrales críticos del proyecto.</p>
-              <div className="bar-chart">
-                {jumps.map((item) => (
-                  <article className="bar-row" key={item.label}>
-                    <div className="bar-row__head">
-                      <span>{item.label}</span>
-                      <strong>
-                        {item.beforeText} → {item.nowText}
-                      </strong>
-                    </div>
-                    <span className="bar-subtitle">Antes: {item.beforeText}</span>
-                    <div className="bar-track">
+            {/* Saltos normativos */}
+            <article className="chart-card chart-card--jumps">
+              <header className="chart-header">
+                <div className="chart-icon">
+                  <ScaleIcon />
+                </div>
+                <div className="chart-header-text">
+                  <p className="chart-kicker">Cambios críticos</p>
+                  <h4>Saltos normativos: antes vs. ahora</h4>
+                </div>
+              </header>
+              <p className="chart-caption">
+                Umbrales clave donde el proyecto modifica valores numéricos del régimen vigente.
+              </p>
+
+              <div className="jumps-grid">
+                {jumps.map((item) => {
+                  const goesUp = item.nowValue > item.beforeValue;
+                  return (
+                    <article className="jump-card" key={item.label}>
                       <span
-                        className="bar-fill"
-                        style={{
-                          width: `${Math.max((item.beforeValue / maxJump) * 100, 3)}%`,
-                          background: "#87a6cd"
-                        }}
-                      ></span>
-                    </div>
-                    <span className="bar-subtitle">Ahora: {item.nowText}</span>
-                    <div className="bar-track">
-                      <span
-                        className="bar-fill"
-                        style={{
-                          width: `${Math.max((item.nowValue / maxJump) * 100, 3)}%`,
-                          background: "#1f4e8c"
-                        }}
-                      ></span>
-                    </div>
-                  </article>
-                ))}
+                        className={`jump-delta${goesUp ? "" : " jump-delta--down"}`}
+                        aria-hidden="true"
+                      >
+                        {goesUp ? "Sube" : "Baja"}
+                      </span>
+                      <p className="jump-label">{item.label}</p>
+                      <div className="jump-compare">
+                        <div className="jump-cell jump-cell--before">
+                          <span>Antes</span>
+                          <strong>{item.beforeText}</strong>
+                        </div>
+                        <div className="jump-arrow" aria-hidden="true">
+                          <ArrowIcon size={18} />
+                        </div>
+                        <div className="jump-cell jump-cell--now">
+                          <span>Ahora</span>
+                          <strong>{item.nowText}</strong>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </article>
           </div>
         </section>
 
+        {/* ---------- Antes vs Ahora ---------- */}
+
         <section className="section reveal is-visible" id="segmentos">
           <div className="section-top">
-            <p className="section-label">Segmentación De Cambios</p>
-            <h3>Antes, ahora y ejemplo operativo por tema</h3>
+            <p className="section-label">Explorador de cambios</p>
+            <h3>Antes vs ahora</h3>
             <p className="section-helper">
-              Cada segmento tiene su propio bloque para facilitar lectura técnica y presentación pública.
+              Cinco segmentos a la vista. Tocá cualquiera para abrir un panel y navegar,
+              cambio por cambio, con flechas o el teclado.
             </p>
           </div>
-          <nav className="segment-jump" aria-label="Navegación por segmentos">
-            {dashboardData.segmentGroups.map((group, index) => (
-              <a key={group.id} href={`#segmento-${group.id}`}>
-                {`S${index + 1} · ${group.title.split("·")[1].trim()}`}
-              </a>
-            ))}
-          </nav>
-          <div className="segment-blocks">
-            {dashboardData.segmentGroups.map((group) => (
-              <section className="segment-block" id={`segmento-${group.id}`} key={group.id}>
-                <header className="segment-head">
-                  <h4>{group.title}</h4>
-                  <p>{group.summary}</p>
-                </header>
-                <div className="segment-items">
-                  {[...group.items]
-                    .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99))
-                    .map((item) => (
-                      <article className="segment-item" key={item.topic}>
-                        <h5>{item.topic}</h5>
-                        <div className="segment-matrix">
-                          <div className="segment-cell">
-                            <span>Antes</span>
-                            <p>{item.before}</p>
-                          </div>
-                          <div className="segment-cell">
-                            <span>Ahora</span>
-                            <p>{item.now}</p>
-                          </div>
-                          <div className="segment-cell">
-                            <span>Ejemplo</span>
-                            <p>{item.example}</p>
-                          </div>
-                        </div>
-                      </article>
-                    ))}
-                </div>
-              </section>
-            ))}
-          </div>
+
+          <SegmentsExplorer segmentGroups={dashboardData.segmentGroups} />
         </section>
 
         <section className="section reveal is-visible" id="marco">

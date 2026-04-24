@@ -1,69 +1,35 @@
-# Dashboard de Reforma Electoral Integral
+# v0-dashboard-reforma-electoral-integral
 
-Dashboard web estático para visualizar los cambios del proyecto `INLEG-2026-40722643-APN-PTE` y su impacto operativo.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
-## Estructura
+## Built with v0
 
-- `app/layout.js`: layout raíz de Next.js.
-- `app/page.js`: dashboard institucional renderizado en React.
-- `app/globals.css`: diseño visual responsive.
-- `data/lawData.js`: fuente única de datos del tablero.
-- `public/INLEG-2026-40722643-APN-PTE.pdf`: proyecto de ley.
+This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
 
-## Cambios visuales de esta versión
+[Continue working on v0 →](https://v0.app/chat/projects/prj_GbvNziloi3GgTObZZ7366YkFAwkv)
 
-- Se agregó visualización de gráficos:
-  - torta para composición de partidos.
-  - barras para costos electorales.
-- Se rediseñó `Antes vs propuesta` en formato de tarjetas comparativas.
-- Se rediseñó `Cambios por bloque temático` con bloques clickeables y detalle expandible.
+## Getting Started
 
-## Desarrollo local
-
-1. Instalar dependencias:
-
-```bash
-npm install
-```
-
-2. Levantar entorno local:
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-## Flujo colaborativo sugerido
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. Actualizar datos en `data/lawData.js`.
-2. Revisar en navegador.
-3. Commit con mensaje claro (`feat:`, `fix:`, `docs:`).
-4. Push a GitHub.
-5. Vercel genera preview por rama/commit.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Deploy en Vercel
+## Learn More
 
-Este proyecto se despliega como aplicación Next.js desde el root del repositorio.
+To learn more, take a look at the following resources:
 
-- Comando manual: `vercel deploy . -y`
-- Producción (solo cuando corresponda): `vercel deploy . --prod -y`
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
 
-## Estado actual de deploy
-
-- Preview activa: `https://dashboard-reforma-electoral-integral-889dvxc5y.vercel.app`
-- Dominio productivo actual: `https://dashboard-reforma-electoral-integra.vercel.app`
-
-## GitHub + Vercel para trabajo en equipo
-
-Se agregó el workflow `.github/workflows/vercel-deploy.yml` para:
-
-- Deploy de preview en cada Pull Request.
-- Deploy productivo al hacer push en `main`.
-
-### Configuración mínima en GitHub (una sola vez)
-
-1. Crear el repositorio en GitHub.
-2. Subir este proyecto.
-3. En `Settings > Secrets and variables > Actions`, crear el secret:
-   - `VERCEL_TOKEN`: token de Vercel con permisos de deploy en el proyecto.
-
-Con eso, los deploys quedan automáticos para el equipo.
+<a href="https://v0.app/chat/api/kiro/clone/Mateou010/v0-dashboard-reforma-electoral-integral" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
