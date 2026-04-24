@@ -7,6 +7,7 @@ on:
       - main
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
   VERCEL_ORG_ID: team_JbsGa1E7GqpzcWtSYt959qfo
   VERCEL_PROJECT_ID: prj_GbvNziloi3GgTObZZ7366YkFAwkv
 
@@ -16,12 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Validate Vercel Token
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "Missing GitHub secret VERCEL_TOKEN. Go to Settings > Secrets and variables > Actions and create it."
+            exit 1
+          fi
 
       - name: Pull Vercel Environment
         run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
@@ -37,12 +45,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Validate Vercel Token
+        run: |
+          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
+            echo "Missing GitHub secret VERCEL_TOKEN. Go to Settings > Secrets and variables > Actions and create it."
+            exit 1
+          fi
 
       - name: Pull Vercel Environment
         run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
