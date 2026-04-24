@@ -4,11 +4,11 @@ Dashboard web estático para visualizar los cambios del proyecto `INLEG-2026-407
 
 ## Estructura
 
-- `index.html`: layout y secciones del dashboard.
-- `styles.css`: diseño visual responsive.
-- `main.js`: render dinámico, filtros y buscador.
+- `app/layout.js`: layout raíz de Next.js.
+- `app/page.js`: dashboard institucional renderizado en React.
+- `app/globals.css`: diseño visual responsive.
 - `data/lawData.js`: fuente única de datos del tablero.
-- `INLEG-2026-40722643-APN-PTE.pdf`: proyecto de ley.
+- `public/INLEG-2026-40722643-APN-PTE.pdf`: proyecto de ley.
 
 ## Cambios visuales de esta versión
 
@@ -20,13 +20,16 @@ Dashboard web estático para visualizar los cambios del proyecto `INLEG-2026-407
 
 ## Desarrollo local
 
-Proyecto sin dependencias.
-
-1. Abrir `index.html` en navegador, o
-2. Correr un server estático (ejemplo):
+1. Instalar dependencias:
 
 ```bash
-npx serve .
+npm install
+```
+
+2. Levantar entorno local:
+
+```bash
+npm run dev
 ```
 
 ## Flujo colaborativo sugerido
@@ -39,7 +42,7 @@ npx serve .
 
 ## Deploy en Vercel
 
-Este proyecto se puede desplegar directamente como sitio estático desde el root del repositorio.
+Este proyecto se despliega como aplicación Next.js desde el root del repositorio.
 
 - Comando manual: `vercel deploy . -y`
 - Producción (solo cuando corresponda): `vercel deploy . --prod -y`
