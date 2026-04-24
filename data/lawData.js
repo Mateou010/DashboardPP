@@ -6,8 +6,8 @@ export const dashboardData = {
     "Síntesis integral del proyecto con foco en requisitos partidarios, régimen electoral, financiamiento, Parlasur y disposiciones de implementación.",
   kpis: [
     { label: "Electores nacionales", value: 36477204, format: "number" },
-    { label: "Partidos nacionales (estimado)", value: "40-45" },
-    { label: "Partidos distritales", value: "> 700" },
+    { label: "Partidos nacionales", value: 48, format: "number" },
+    { label: "Partidos distritales", value: 713, format: "number" },
     { label: "Costo elección legislativa 2025", value: 395133, format: "millions_ars" },
     { label: "Gasto elección 2023", value: 422537, format: "millions_ars" },
     { label: "Contrato Correo Argentino 2025", value: 223006358830, format: "ars" },
@@ -18,8 +18,8 @@ export const dashboardData = {
   ],
   charts: {
     partiesComposition: [
-      { label: "Partidos distritales", value: 700, color: "#1f4e8c" },
-      { label: "Partidos nacionales", value: 45, color: "#7f9fc7" }
+      { label: "Partidos nacionales", value: 48, color: "#1f4e8c" },
+      { label: "Partidos distritales", value: 713, color: "#7f9fc7" }
     ],
     electionCosts: [
       { label: "Elección 2023 (total)", value: 422537, color: "#163f78" },

@@ -31,26 +31,9 @@ function formatMillions(value) {
   return `$${numberFormatter.format(value)} M`;
 }
 
-function buildPieGradient(items) {
-  const total = items.reduce((sum, item) => sum + item.value, 0);
-  let progress = 0;
-
-  const slices = items.map((item) => {
-    const start = progress;
-    const share = (item.value / total) * 100;
-    progress += share;
-    return `${item.color} ${start}% ${progress}%`;
-  });
-
-  return {
-    total,
-    background: `conic-gradient(${slices.join(",")})`,
-  };
-}
-
 /* ---------- Iconos inline ---------- */
 
-function PieIcon() {
+function DataIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -63,8 +46,12 @@ function PieIcon() {
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M21 12A9 9 0 1 1 12 3v9h9z" />
-      <path d="M21 12a9 9 0 0 0-9-9v9z" />
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M8 14h2" />
+      <path d="M8 17h2" />
+      <path d="M14 14h2" />
+      <path d="M14 17h2" />
     </svg>
   );
 }
@@ -135,7 +122,6 @@ export default function HomePage() {
   const costs = dashboardData.charts.electionCosts;
   const jumps = dashboardData.charts.keyJumps;
 
-  const partiesPie = buildPieGradient(parties);
   const maxCost = Math.max(...costs.map((item) => item.value));
   const sortedCosts = [...costs].sort((a, b) => b.value - a.value);
 
@@ -198,7 +184,7 @@ export default function HomePage() {
             <article className="chart-card chart-card--donut">
               <header className="chart-header">
                 <div className="chart-icon">
-                  <PieIcon />
+                  <DataIcon />
                 </div>
                 <div className="chart-header-text">
                   <p className="chart-kicker">Composición</p>
@@ -206,49 +192,27 @@ export default function HomePage() {
                 </div>
               </header>
               <p className="chart-caption">
-                Distribución entre partidos nacionales y distritales en el padrón actual.
+                Cantidad de partidos vigentes por tipo (sin comparación porcentual).
               </p>
 
-              <div className="pie-layout">
-                <div className="pie-wrap">
-                  <div className="pie-chart" style={{ background: partiesPie.background }} />
-                  <div className="pie-center">
-                    <div>
-                      <strong>{numberFormatter.format(partiesPie.total)}</strong>
-                      <span>Partidos</span>
+              <div className="composition-list">
+                {parties.map((item) => (
+                  <article className="composition-row" key={item.label}>
+                    <div className="composition-row-left">
+                      <span
+                        className="composition-swatch"
+                        style={{ background: item.color }}
+                        aria-hidden="true"
+                      />
+                      <span>{item.label}</span>
                     </div>
-                  </div>
-                </div>
-                <ul className="donut-legend">
-                  {parties.map((item) => {
-                    const share = (item.value / partiesPie.total) * 100;
-                    return (
-                      <li key={item.label}>
-                        <div className="donut-legend-head">
-                          <span className="donut-legend-head-left">
-                            <span
-                              className="legend-swatch"
-                              style={{ background: item.color }}
-                            />
-                            <span>{item.label}</span>
-                          </span>
-                          <span className="donut-legend-value">
-                            {numberFormatter.format(item.value)} · {share.toFixed(1)}%
-                          </span>
-                        </div>
-                        <div className="donut-legend-share">
-                          <span
-                            style={{
-                              width: `${share}%`,
-                              background: item.color,
-                            }}
-                          />
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
+                    <strong>{numberFormatter.format(item.value)}</strong>
+                  </article>
+                ))}
               </div>
+              <p className="chart-note">
+                *Dato obtenido al 30 de junio de 2025 · argentina.gob.ar
+              </p>
             </article>
 
             {/* Barras ranqueadas: costos */}

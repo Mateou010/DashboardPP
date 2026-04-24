@@ -265,116 +265,50 @@ h1 {
   font-size: 0.88rem;
 }
 
-/* Donut chart */
+/* Composición de partidos (sin torta) */
 
-.pie-layout {
-  display: grid;
-  grid-template-columns: minmax(180px, 220px) 1fr;
-  gap: 1.25rem;
-  align-items: center;
-}
-
-.pie-wrap {
-  position: relative;
-  width: clamp(180px, 22vw, 220px);
-  aspect-ratio: 1;
-  margin: 0 auto;
-}
-
-.pie-chart {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 0 28px #ffffff,
-    0 18px 32px -24px rgba(14, 40, 76, 0.6);
-}
-
-.pie-center {
-  position: absolute;
-  inset: 28px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid var(--line-soft);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 0.5rem;
-}
-
-.pie-center strong {
-  display: block;
-  font-family: "Merriweather", Georgia, serif;
-  color: var(--navy-900);
-  font-size: 1.55rem;
-  line-height: 1;
-}
-
-.pie-center span {
-  display: block;
-  margin-top: 0.28rem;
-  font-size: 0.72rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-.donut-legend {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.composition-list {
   display: grid;
   gap: 0.75rem;
 }
 
-.donut-legend li {
-  display: grid;
-  gap: 0.3rem;
-  padding: 0.55rem 0.7rem;
-  border-radius: 0.55rem;
-  background: var(--slate-50);
-  border: 1px solid var(--line-soft);
-}
-
-.donut-legend-head {
+.composition-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
-}
-
-.donut-legend-head-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.legend-swatch {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 0.25rem;
-}
-
-.donut-legend-value {
-  font-family: "Merriweather", Georgia, serif;
-  color: var(--navy-900);
-  font-weight: 700;
-}
-
-.donut-legend-share {
-  height: 4px;
+  gap: 0.8rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.65rem;
   background: #ffffff;
-  border-radius: 999px;
-  overflow: hidden;
   border: 1px solid var(--line-soft);
 }
 
-.donut-legend-share span {
-  display: block;
-  height: 100%;
+.composition-row-left {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.composition-swatch {
+  width: 0.72rem;
+  height: 0.72rem;
   border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.composition-row strong {
+  font-family: "Merriweather", Georgia, serif;
+  color: var(--navy-900);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.chart-note {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--muted);
 }
 
 /* Ranked bar chart */
@@ -860,10 +794,6 @@ h1 {
 }
 
 @media (max-width: 940px) {
-  .pie-layout {
-    grid-template-columns: 1fr;
-  }
-
   .segment-compare {
     grid-template-columns: 1fr;
     gap: 0.55rem;
