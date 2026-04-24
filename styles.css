@@ -1,13 +1,16 @@
 :root {
-  --bg: #f2f4ef;
-  --paper: #fbfcf8;
-  --ink: #102123;
-  --muted: #516062;
-  --line: #d4ddd4;
-  --accent: #03524a;
-  --accent-soft: #d4ebe5;
-  --alert: #8d2a0c;
-  --shadow: 0 24px 40px -32px rgba(6, 41, 40, 0.45);
+  --bg: #ffffff;
+  --surface: #5b5a5e;
+  --surface-strong: #4f4e52;
+  --surface-soft: #66656a;
+  --title: #fde500;
+  --ink: #ffffff;
+  --muted: #d9d9df;
+  --line: rgba(255, 255, 255, 0.22);
+  --chip-bg: rgba(253, 229, 0, 0.18);
+  --chip-line: rgba(253, 229, 0, 0.36);
+  --chip-text: #fde500;
+  --shadow: 0 24px 40px -30px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -23,10 +26,7 @@ body {
 body {
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 8% 8%, rgba(3, 82, 74, 0.08) 0 22%, transparent 44%),
-    radial-gradient(circle at 90% 15%, rgba(141, 42, 12, 0.1) 0 18%, transparent 34%),
-    var(--bg);
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f6 100%);
   line-height: 1.5;
 }
 
@@ -37,10 +37,13 @@ h4 {
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
   line-height: 1.12;
+  color: var(--title);
 }
 
 .app-header {
   padding: 2.5rem 1.2rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 2px solid var(--title);
 }
 
 .app-header__inner {
@@ -53,7 +56,7 @@ h4 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
-  color: var(--accent);
+  color: var(--muted);
   font-weight: 600;
 }
 
@@ -71,13 +74,13 @@ h1 {
 .layout {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1.2rem 4rem;
+  padding: 1.1rem 1.2rem 4rem;
   display: grid;
   gap: 1rem;
 }
 
 .section {
-  background: var(--paper);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 1.2rem;
   padding: 1.2rem;
@@ -87,8 +90,7 @@ h1 {
 .section--lead {
   display: grid;
   gap: 1rem;
-  background: linear-gradient(130deg, #0f403d 0%, #0e2d39 55%, #2d2434 100%);
-  color: #f6fbfa;
+  background: linear-gradient(135deg, #5b5a5e 0%, #4f4e52 100%);
 }
 
 .section--lead h2 {
@@ -103,12 +105,14 @@ h1 {
 }
 
 .lead-actions a {
-  color: #f6fbfa;
+  color: var(--surface);
   text-decoration: none;
-  border: 1px solid rgba(246, 251, 250, 0.45);
+  border: 1px solid var(--title);
+  background: var(--title);
   border-radius: 999px;
-  padding: 0.5rem 0.9rem;
+  padding: 0.55rem 0.95rem;
   font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .section-top {
@@ -156,6 +160,7 @@ h1 {
 .kpi dd {
   margin: 0.15rem 0 0;
   font-family: "Space Grotesk", sans-serif;
+  color: var(--title);
   font-size: 1.45rem;
   font-weight: 600;
 }
@@ -170,7 +175,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 1rem;
   padding: 1rem;
-  background: #fff;
+  background: var(--surface-strong);
 }
 
 .chart-caption {
@@ -194,8 +199,8 @@ h1 {
   place-items: center;
   margin: 0 auto;
   box-shadow:
-    inset 0 0 0 22px #fff,
-    0 12px 26px -20px rgba(16, 33, 35, 0.7);
+    inset 0 0 0 22px #ffffff,
+    0 12px 26px -20px rgba(0, 0, 0, 0.7);
 }
 
 .pie-chart span {
@@ -203,7 +208,7 @@ h1 {
   height: 122px;
   border-radius: 50%;
   border: 1px solid var(--line);
-  background: var(--paper);
+  background: var(--surface);
   color: var(--ink);
   display: grid;
   place-items: center;
@@ -216,6 +221,7 @@ h1 {
 .pie-chart strong {
   display: block;
   font-family: "Space Grotesk", sans-serif;
+  color: var(--title);
   font-size: 1rem;
 }
 
@@ -252,6 +258,7 @@ h1 {
 .legend-value {
   font-weight: 600;
   font-family: "Space Grotesk", sans-serif;
+  color: var(--title);
 }
 
 .bar-chart {
@@ -275,12 +282,12 @@ h1 {
 
 .bar-row__head strong {
   font-family: "Space Grotesk", sans-serif;
-  color: var(--ink);
+  color: var(--title);
   font-size: 0.94rem;
 }
 
 .bar-track {
-  background: #e6ece5;
+  background: rgba(255, 255, 255, 0.18);
   height: 0.74rem;
   border-radius: 999px;
   overflow: hidden;
@@ -303,13 +310,13 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 1rem;
   overflow: hidden;
-  background: #fff;
+  background: var(--surface-strong);
 }
 
 .comparison-card__title {
   padding: 0.8rem 1rem;
-  color: #f6fbfa;
-  background: linear-gradient(120deg, #123e4b 0%, #24595f 100%);
+  color: var(--title);
+  background: #4a494d;
   font-size: 1rem;
 }
 
@@ -324,12 +331,12 @@ h1 {
 }
 
 .comparison-side--current {
-  background: #f5f7f4;
+  background: #59585c;
   border-right: 1px solid var(--line);
 }
 
 .comparison-side--proposal {
-  background: #eef6f3;
+  background: #67666b;
 }
 
 .comparison-side h5 {
@@ -338,7 +345,7 @@ h1 {
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--title);
 }
 
 .comparison-side p {
@@ -360,19 +367,21 @@ h1 {
 
 .topic-card {
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface-strong);
   color: var(--ink);
   text-align: left;
   border-radius: 0.82rem;
-  padding: 0.65rem 0.75rem;
+  padding: 0.7rem 0.8rem;
   cursor: pointer;
   display: grid;
   gap: 0.3rem;
+  min-height: 74px;
 }
 
 .topic-card__title {
   font-size: 0.9rem;
   font-weight: 600;
+  color: var(--title);
 }
 
 .topic-card__meta {
@@ -384,8 +393,8 @@ h1 {
 }
 
 .topic-card[aria-selected="true"] {
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  border-color: var(--title);
+  background: #6b6a6f;
 }
 
 .explorer-panel {
@@ -402,9 +411,10 @@ h1 {
 
 .search-input input {
   border: 1px solid var(--line);
-  background: #fff;
+  background: #ffffff;
+  color: #5b5a5e;
   border-radius: 0.65rem;
-  padding: 0.58rem 0.75rem;
+  padding: 0.62rem 0.8rem;
   font: inherit;
 }
 
@@ -417,7 +427,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 0.8rem;
   overflow: hidden;
-  background: #fff;
+  background: var(--surface-soft);
 }
 
 .change-item summary {
@@ -427,7 +437,7 @@ h1 {
   align-items: flex-start;
   gap: 0.75rem;
   cursor: pointer;
-  padding: 0.72rem 0.85rem;
+  padding: 0.8rem 0.9rem;
 }
 
 .change-item summary::-webkit-details-marker {
@@ -445,18 +455,15 @@ h1 {
 .change-item h4 {
   margin: 0;
   font-size: 0.95rem;
+  color: var(--title);
 }
 
 .change-item__action {
   font-size: 0.76rem;
-  color: var(--accent);
+  color: var(--title);
   font-weight: 600;
   white-space: nowrap;
   margin-top: 0.08rem;
-}
-
-.change-item[open] .change-item__action {
-  color: var(--alert);
 }
 
 .change-item__content {
@@ -466,7 +473,7 @@ h1 {
 
 .change-item__content p {
   margin: 0;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .tag-row {
@@ -477,8 +484,9 @@ h1 {
 }
 
 .tag-row span {
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-line);
+  color: var(--chip-text);
   border-radius: 999px;
   padding: 0.23rem 0.56rem;
   font-size: 0.75rem;
@@ -507,7 +515,7 @@ h1 {
 }
 
 .source-list a {
-  color: var(--accent);
+  color: var(--title);
   text-decoration: none;
   font-weight: 600;
 }
@@ -516,7 +524,7 @@ h1 {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.2rem 2rem;
-  color: var(--muted);
+  color: #5b5a5e;
   font-size: 0.9rem;
 }
 
@@ -524,8 +532,8 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 0.72rem;
   padding: 0.75rem 0.8rem;
-  color: var(--alert);
-  background: #fff;
+  color: var(--title);
+  background: var(--surface-soft);
   font-weight: 500;
 }
 
@@ -557,14 +565,33 @@ h1 {
 @media (max-width: 760px) {
   .app-header {
     padding-top: 1.8rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .layout {
+    padding: 1rem 0.85rem 3.2rem;
   }
 
   .section {
     border-radius: 1rem;
+    padding: 1rem;
   }
 
   .section--lead h2 {
     max-width: 100%;
+  }
+
+  .lead-actions {
+    width: 100%;
+  }
+
+  .lead-actions a {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .comparison-card__body {
@@ -574,5 +601,32 @@ h1 {
   .comparison-side--current {
     border-right: 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .topic-card {
+    min-height: 82px;
+    padding: 0.8rem;
+  }
+
+  .change-item summary {
+    padding: 0.85rem 0.9rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pie-chart {
+    width: min(74vw, 220px);
+  }
+
+  .bar-row__head {
+    font-size: 0.82rem;
   }
 }

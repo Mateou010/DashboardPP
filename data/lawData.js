@@ -17,15 +17,15 @@ export const dashboardData = {
   ],
   charts: {
     partiesComposition: [
-      { label: "Partidos distritales", value: 700, color: "#2b6f6a" },
-      { label: "Partidos nacionales", value: 45, color: "#c96a38" }
+      { label: "Partidos distritales", value: 700, color: "#fde500" },
+      { label: "Partidos nacionales", value: 45, color: "#b4b3b8" }
     ],
     electionCosts: [
-      { label: "Elección 2023 (total)", value: 422537, color: "#5b6f95" },
-      { label: "Elección 2025 (total)", value: 395133, color: "#2b6f6a" },
-      { label: "Correo 2025", value: 223006, color: "#c96a38" },
-      { label: "INDRA 2025", value: 21000, color: "#9a3e2a" },
-      { label: "BUP 2025", value: 43000, color: "#2f4f72" }
+      { label: "Elección 2023 (total)", value: 422537, color: "#fde500" },
+      { label: "Elección 2025 (total)", value: 395133, color: "#d2d1d5" },
+      { label: "Correo 2025", value: 223006, color: "#b4b3b8" },
+      { label: "INDRA 2025", value: 21000, color: "#94939a" },
+      { label: "BUP 2025", value: 43000, color: "#74737b" }
     ]
   },
   comparisons: [
