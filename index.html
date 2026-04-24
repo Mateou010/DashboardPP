@@ -6,12 +6,12 @@
     <title>Dashboard | Reforma Electoral Integral</title>
     <meta
       name="description"
-      content="Dashboard interactivo del proyecto de Reforma Electoral Integral (INLEG-2026-40722643-APN-PTE)."
+      content="Dashboard institucional del proyecto de Reforma Electoral Integral (INLEG-2026-40722643-APN-PTE)."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@500;700;900&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -28,22 +28,22 @@
     <main class="layout">
       <section class="section section--lead reveal">
         <div>
-          <p class="section-label">Qué cambia</p>
+          <p class="section-label">Resumen Ejecutivo</p>
           <h2>
-            Vista operativa de cambios en partidos políticos, régimen electoral,
-            financiamiento y Parlasur.
+            Lectura institucional del impacto normativo en partidos políticos,
+            código electoral, financiamiento y régimen de transición.
           </h2>
         </div>
         <div class="lead-actions">
-          <a href="#explorador">Ir a bloques temáticos</a>
-          <a href="#comparativas">Ver comparativas clave</a>
+          <a href="#segmentos">Ir a segmentos</a>
+          <a href="#graficos">Ir a gráficos</a>
         </div>
       </section>
 
       <section class="section reveal" id="kpis">
         <div class="section-top">
-          <p class="section-label">Datos base</p>
-          <h3>Escala del sistema electoral y costos recientes</h3>
+          <p class="section-label">Datos Estructurales</p>
+          <h3>Escala electoral y costos de referencia</h3>
         </div>
         <div id="kpi-list" class="kpi-grid" aria-live="polite"></div>
       </section>
@@ -51,16 +51,21 @@
       <section class="section reveal" id="graficos">
         <div class="section-top">
           <p class="section-label">Visualizaciones</p>
-          <h3>Lectura rápida con gráficos</h3>
+          <h3>Composición del sistema y magnitudes de gasto</h3>
         </div>
         <div class="chart-grid">
           <article class="chart-card">
             <h4>Composición estimada de partidos vigentes</h4>
             <p class="chart-caption">
-              Relación entre partidos nacionales y distritales informados en el resumen del proyecto.
+              Relación entre partidos nacionales y distritales.
             </p>
             <div class="pie-layout">
-              <div id="parties-pie" class="pie-chart" role="img" aria-label="Gráfico de torta de composición de partidos">
+              <div
+                id="parties-pie"
+                class="pie-chart"
+                role="img"
+                aria-label="Gráfico de torta de composición de partidos"
+              >
                 <span id="parties-total"></span>
               </div>
               <ul id="parties-legend" class="chart-legend"></ul>
@@ -70,44 +75,34 @@
           <article class="chart-card">
             <h4>Costos electorales recientes</h4>
             <p class="chart-caption">
-              Montos en millones de ARS para comparar magnitudes de gasto y contratación electoral.
+              Montos en millones de ARS para comparar niveles de gasto.
             </p>
-            <div id="costs-bars" class="bar-chart" role="img" aria-label="Gráfico de barras de costos electorales"></div>
+            <div
+              id="costs-bars"
+              class="bar-chart"
+              role="img"
+              aria-label="Gráfico de barras de costos electorales"
+            ></div>
           </article>
         </div>
       </section>
 
-      <section class="section reveal" id="comparativas">
+      <section class="section reveal" id="segmentos">
         <div class="section-top">
-          <p class="section-label">Comparativas</p>
-          <h3>Antes vs propuesta</h3>
+          <p class="section-label">Segmentación De Cambios</p>
+          <h3>Antes, ahora y ejemplo operativo por tema</h3>
           <p class="section-helper">
-            Cada tarjeta muestra el régimen actual frente al cambio propuesto para ese tema.
+            Cada segmento tiene su propio bloque para facilitar lectura técnica y presentación pública.
           </p>
         </div>
-        <div id="comparison-cards" class="comparison-grid" aria-live="polite"></div>
-      </section>
-
-      <section class="section reveal" id="explorador">
-        <div class="section-top">
-          <p class="section-label">Explorador</p>
-          <h3>Cambios por bloque temático</h3>
-          <p class="section-helper">
-            Elegí un bloque a la izquierda y abrí cada cambio para ver su detalle.
-          </p>
-        </div>
-        <div class="explorer-layout">
-          <div id="topic-filters" class="topic-grid" role="tablist" aria-label="Filtros por bloque"></div>
-          <div class="explorer-panel">
-            <div id="change-list" class="change-list" aria-live="polite"></div>
-          </div>
-        </div>
+        <nav id="segment-jump" class="segment-jump" aria-label="Navegación por segmentos"></nav>
+        <div id="segment-blocks" class="segment-blocks" aria-live="polite"></div>
       </section>
 
       <section class="section reveal" id="marco">
         <div class="section-top">
-          <p class="section-label">Marco normativo</p>
-          <h3>Títulos del proyecto y puntos de referencia</h3>
+          <p class="section-label">Marco Normativo</p>
+          <h3>Títulos del proyecto y alcance legal</h3>
         </div>
         <ul id="title-list" class="title-list"></ul>
       </section>
@@ -115,7 +110,7 @@
       <section class="section reveal" id="fuentes">
         <div class="section-top">
           <p class="section-label">Fuente</p>
-          <h3>Documento utilizado en esta versión</h3>
+          <h3>Documento base utilizado</h3>
         </div>
         <ul id="source-list" class="source-list"></ul>
       </section>

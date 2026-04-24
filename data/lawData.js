@@ -17,207 +17,120 @@ export const dashboardData = {
   ],
   charts: {
     partiesComposition: [
-      { label: "Partidos distritales", value: 700, color: "#fde500" },
-      { label: "Partidos nacionales", value: 45, color: "#b4b3b8" }
+      { label: "Partidos distritales", value: 700, color: "#1f4e8c" },
+      { label: "Partidos nacionales", value: 45, color: "#7f9fc7" }
     ],
     electionCosts: [
-      { label: "Elección 2023 (total)", value: 422537, color: "#fde500" },
-      { label: "Elección 2025 (total)", value: 395133, color: "#d2d1d5" },
-      { label: "Correo 2025", value: 223006, color: "#b4b3b8" },
-      { label: "INDRA 2025", value: 21000, color: "#94939a" },
-      { label: "BUP 2025", value: 43000, color: "#74737b" }
+      { label: "Elección 2023 (total)", value: 422537, color: "#163f78" },
+      { label: "Elección 2025 (total)", value: 395133, color: "#2c5a9d" },
+      { label: "Correo 2025", value: 223006, color: "#5a7fb1" },
+      { label: "INDRA 2025", value: 21000, color: "#8aa7cd" },
+      { label: "BUP 2025", value: 43000, color: "#3f6ca5" }
     ]
   },
-  comparisons: [
-    {
-      topic: "Creación de partidos distritales",
-      current: "Piso de afiliados: 4 por mil del padrón del distrito.",
-      proposal:
-        "Piso de afiliados: 0,5% del padrón del distrito, con tope de cálculo sobre 2.000.000 electores."
-    },
-    {
-      topic: "Partidos de orden nacional",
-      current: "Personería nacional con presencia en 5 distritos.",
-      proposal:
-        "Sube a 10 distritos + afiliados equivalentes al 0,1% del registro nacional (hoy, aprox. 365.000)."
-    },
-    {
-      topic: "Alianzas",
-      current:
-        "Partidos distritales y nacionales pueden combinarse para distintos acuerdos.",
-      proposal:
-        "Elimina alianzas entre partidos de distrito y nacionales; partidos nacionales deben definir adjudicación de votos."
-    },
-    {
-      topic: "Primarias (PASO)",
-      current: "Sistema de Primarias Abiertas, Simultáneas y Obligatorias.",
-      proposal:
-        "Se eliminan PASO; cada partido define internamente su mecanismo de selección de candidaturas."
-    },
-    {
-      topic: "Caducidad por desempeño electoral",
-      current: "Caducidad con 2 elecciones consecutivas debajo del 2% de votos.",
-      proposal:
-        "Eleva piso al 3% y exige cumplirlo en al menos una de dos elecciones nacionales sucesivas."
-    },
-    {
-      topic: "Avales para candidaturas",
-      current: "No se exigía este esquema digital estandarizado para avales.",
-      proposal:
-        "Diputados/Senadores: 0,5% del distrito. Presidente/Vice: 0,1% nacional. Carga digital en plataforma CNE."
-    },
-    {
-      topic: "Límite de aportes privados",
-      current: "Límite del 2% sobre base legal vigente.",
-      proposal:
-        "Pasa al 35% sobre la base definida por electores x 35, con incremento fuerte del techo de aportes."
-    },
-    {
-      topic: "Veda de sondeos",
-      current: "Desde 8 días antes hasta 3 horas después de la elección.",
-      proposal: "Desde 48 horas antes hasta 2 horas después de la elección."
-    }
-  ],
-  sections: [
+  segmentGroups: [
     {
       id: "partidos",
-      label: "1. Reforma de Partidos Políticos",
-      notes: [
+      title: "Segmento 1 · Partidos Políticos",
+      summary: "Requisitos de creación, reconocimiento nacional y continuidad partidaria.",
+      items: [
         {
-          title: "Fundadores y afiliaciones",
-          detail:
-            "Exige 50 fundadores individualizados, sin pertenencia a otros partidos, y eleva el umbral de afiliados para reconocimiento.",
-          tags: ["Institucional", "Operativo"]
+          topic: "Creación de partidos distritales",
+          before: "Piso de afiliados de 4 por mil del padrón del distrito.",
+          now: "Pasa a 0,5% del padrón, con base de cálculo máxima de 2.000.000 de electores.",
+          example:
+            "Distrito de 100.000 electores: antes 400 afiliados; ahora 500. Distrito con tope de 2 millones: antes 4.000; ahora 10.000."
         },
         {
-          title: "Responsabilidad de apoderados",
-          detail:
-            "Los apoderados pasan a tener responsabilidad solidaria por trámites ante la justicia electoral.",
-          tags: ["Riesgo legal"]
+          topic: "Reconocimiento de partido nacional",
+          before: "Se requerían 5 distritos con personería vigente.",
+          now: "Se exigen 10 distritos y afiliación mínima equivalente al 0,1% del Registro Nacional de Electores.",
+          example:
+            "Tomando 36.477.204 electores nacionales, el 0,1% representa aproximadamente 36.477 afiliaciones."
         },
         {
-          title: "Orden nacional",
-          detail:
-            "Aumenta de 5 a 10 distritos para personería nacional y exige mínimo agregado de afiliados.",
-          tags: ["Escala federal"]
-        },
-        {
-          title: "Afiliación electrónica",
-          detail:
-            "Habilita autenticación biométrica y ficha electrónica, con implementación delegada a reglamentación.",
-          tags: ["Digitalización"]
-        },
-        {
-          title: "Ficha limpia ampliada",
-          detail:
-            "Inhabilita candidaturas con condenas en supuestos definidos y extiende alcance a cargos ejecutivos y autoridades de entes estatales.",
-          tags: ["Integridad pública"]
+          topic: "PASO",
+          before: "Había Primarias Abiertas, Simultáneas y Obligatorias para ordenar candidaturas.",
+          now: "Se eliminan las PASO y cada fuerza define su mecanismo interno de selección.",
+          example:
+            "Un partido puede optar por internas cerradas, congreso partidario o sistema digital propio para definir listas."
         }
       ]
     },
     {
       id: "codigo",
-      label: "2. Código Electoral",
-      notes: [
+      title: "Segmento 2 · Código Electoral",
+      summary: "Reglas de listas, avales y reemplazos en candidaturas.",
+      items: [
         {
-          title: "Lista única por categoría",
-          detail: "Cada agrupación política solo puede presentar una lista por categoría de cargo.",
-          tags: ["Oferta electoral"]
+          topic: "Lista única por categoría",
+          before: "Se permitían configuraciones múltiples para una misma categoría en un distrito.",
+          now: "Cada agrupación puede presentar solo una lista por categoría de cargos.",
+          example:
+            "Una candidatura presidencial ya no podría llevar dos listas diferentes de diputados nacionales en la misma provincia."
         },
         {
-          title: "Un candidato, una agrupación, una categoría",
-          detail:
-            "Restringe simultaneidad de postulaciones en distintos espacios o categorías.",
-          tags: ["Ordenamiento"]
+          topic: "Avales para candidaturas",
+          before: "No había este esquema digital unificado con umbrales específicos por categoría.",
+          now: "Se exige 0,5% distrital para diputados/senadores y 0,1% nacional para presidente/vice, en plataforma CNE.",
+          example:
+            "Para una elección nacional, los avales presidenciales se cargan en sistema digital y cada ciudadano avala una sola opción nacional."
         },
         {
-          title: "Avales digitalizados",
-          detail:
-            "Obliga presentación de avales con porcentajes mínimos y carga mediante plataforma digital de la CNE.",
-          tags: ["Control"]
-        },
-        {
-          title: "Sustitución de candidatos",
-          detail:
-            "Si la Cámara Electoral declara inelegibilidad, el recurso extraordinario no suspende efectos y corre el orden de lista.",
-          tags: ["Procedimiento"]
-        },
-        {
-          title: "Boleta única y campaña",
-          detail:
-            "Incorpora casillero de lista completa, sorteo de orden y cambios en plazos y sanciones de publicidad electoral.",
-          tags: ["Gestión electoral", "Comunicación"]
+          topic: "Reemplazo de candidatos",
+          before: "La norma no explicitaba con ese alcance el efecto inmediato del fallo de inelegibilidad.",
+          now: "Si la Cámara Electoral determina inelegibilidad, el recurso extraordinario no suspende el cumplimiento.",
+          example:
+            "Ante una baja judicial, corre automáticamente el orden de lista para cubrir el lugar vacante."
         }
       ]
     },
     {
-      id: "aportes",
-      label: "3. Aportes de Campaña",
-      notes: [
+      id: "financiamiento",
+      title: "Segmento 3 · Financiamiento de Campaña",
+      summary: "Topes, origen de fondos, destino obligatorio y controles periódicos.",
+      items: [
         {
-          title: "Renuncia a aporte público anual",
-          detail:
-            "Habilita a partidos a renunciar al aporte público anual que les corresponda.",
-          tags: ["Financiamiento"]
+          topic: "Destino mínimo de fondos de capacitación",
+          before: "20% obligatorio para capacitación en función pública, con subcupos para jóvenes y mujeres.",
+          now: "Se reduce a 10% y se eliminan los subcupos obligatorios por edad y género.",
+          example:
+            "Por cada $100 asignados, antes $20 debían ir a capacitación con distribución interna; ahora serían $10 sin esos subcupos."
         },
         {
-          title: "Destino de fondos",
-          detail:
-            "Reduce el mínimo de capacitación en función pública de 20% a 10% y elimina cupos obligatorios por edad y género.",
-          tags: ["Capacitación"]
+          topic: "Límite de aportes privados",
+          before: "Tope del 2% sobre la base legal de cálculo.",
+          now: "Se eleva al 35% sobre la nueva base definida en la reforma.",
+          example:
+            "El techo de financiamiento privado sube de forma muy significativa respecto del régimen anterior, con impacto directo en escala de campaña."
         },
         {
-          title: "Nuevos sujetos prohibidos",
-          detail:
-            "Amplía restricciones para aportantes extranjeros, controlados por extranjeros y condenados o procesados por delitos específicos.",
-          tags: ["Compliance"]
-        },
-        {
-          title: "Suba del tope privado",
-          detail:
-            "Eleva límite de aportes privados del 2% al 35% sobre la base de cálculo legal, con alto impacto de escala.",
-          tags: ["Impacto financiero"]
-        },
-        {
-          title: "Transparencia semanal",
-          detail:
-            "Incorpora obligación de informar semanalmente aportes al juzgado federal electoral.",
-          tags: ["Reporte"]
+          topic: "Sujetos prohibidos y transparencia",
+          before: "Régimen más acotado de prohibiciones y sin reporte semanal obligatorio.",
+          now: "Amplía prohibiciones para ciertos aportantes y obliga a informar aportes semanalmente al juzgado federal electoral.",
+          example:
+            "Durante campaña, el partido debería remitir cada semana el detalle de aportes recibidos para control judicial."
         }
       ]
     },
     {
-      id: "parlasur",
-      label: "4. Parlasur",
-      notes: [
+      id: "parlasur-otras",
+      title: "Segmento 4 · Parlasur y Disposiciones de Transición",
+      summary: "Cambios de representación y plazos de adecuación institucional.",
+      items: [
         {
-          title: "Fin de elección directa",
-          detail:
-            "Los parlamentarios del Mercosur pasarían a ser designados por el Congreso hasta definición regional.",
-          tags: ["Representación"]
+          topic: "Representación en Parlasur",
+          before: "Los parlamentarios del Mercosur se elegían por voto directo.",
+          now: "Pasan a ser designados por el Congreso hasta nueva definición regional.",
+          example:
+            "El elector dejaría de votar una boleta específica de Parlasur en elección general, mientras rija la transición."
         },
         {
-          title: "Privilegios e inmunidades",
-          detail:
-            "Elimina equiparación de privilegios con diputados nacionales y modifica esquema de viáticos y salarios.",
-          tags: ["Régimen institucional"]
-        }
-      ]
-    },
-    {
-      id: "otras",
-      label: "5. Otras disposiciones",
-      notes: [
-        {
-          title: "Espacios gratuitos en medios",
-          detail: "Elimina obligación de cesión gratuita de espacios para campaña.",
-          tags: ["Medios", "Campaña"]
-        },
-        {
-          title: "Ventana de adecuación",
-          detail:
-            "Partidos vigentes tendrían plazo hasta el 30 de junio de 2027 para adecuarse, más 180 días para cartas orgánicas.",
-          tags: ["Implementación"]
+          topic: "Adecuación de partidos vigentes",
+          before: "No existía esta ventana específica de adecuación sobre nuevos requisitos.",
+          now: "Plazo hasta 30/06/2027 para adecuación general y 180 días para adecuar cartas orgánicas.",
+          example:
+            "Una fuerza con personería vigente debe ajustar estructura y carta orgánica dentro de esos plazos para mantener cumplimiento formal."
         }
       ]
     }

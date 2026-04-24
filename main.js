@@ -8,13 +8,10 @@ const partiesPie = document.querySelector("#parties-pie");
 const partiesLegend = document.querySelector("#parties-legend");
 const partiesTotal = document.querySelector("#parties-total");
 const costsBars = document.querySelector("#costs-bars");
-const comparisonCards = document.querySelector("#comparison-cards");
-const topicFilters = document.querySelector("#topic-filters");
-const changeList = document.querySelector("#change-list");
+const segmentJump = document.querySelector("#segment-jump");
+const segmentBlocks = document.querySelector("#segment-blocks");
 const titleList = document.querySelector("#title-list");
 const sourceList = document.querySelector("#source-list");
-
-let activeTopic = "all";
 
 function formatValue(metric) {
   if (typeof metric.value === "string") {
@@ -42,10 +39,6 @@ function formatValue(metric) {
 
 function formatMillions(value) {
   return `$${numberFormatter.format(value)} M`;
-}
-
-function sectionShortLabel(label) {
-  return label.replace(/^\d+\.\s*/, "");
 }
 
 function buildMetaLine() {
@@ -153,162 +146,73 @@ function renderCostBars() {
   costsBars.replaceChildren(fragment);
 }
 
-function renderComparisons() {
+function renderSegmentJump() {
   const fragment = document.createDocumentFragment();
 
-  dashboardData.comparisons.forEach((entry) => {
-    const card = document.createElement("article");
-    card.className = "comparison-card";
+  dashboardData.segmentGroups.forEach((group, index) => {
+    const link = document.createElement("a");
+    link.href = `#segmento-${group.id}`;
+    link.textContent = `S${index + 1} · ${group.title.replace("Segmento ", "").replace(/\s·\s/, " ")}`;
+    fragment.appendChild(link);
+  });
+
+  segmentJump.replaceChildren(fragment);
+}
+
+function renderSegmentBlocks() {
+  const fragment = document.createDocumentFragment();
+
+  dashboardData.segmentGroups.forEach((group) => {
+    const block = document.createElement("section");
+    block.className = "segment-block";
+    block.id = `segmento-${group.id}`;
+
+    const head = document.createElement("header");
+    head.className = "segment-head";
 
     const title = document.createElement("h4");
-    title.className = "comparison-card__title";
-    title.textContent = entry.topic;
+    title.textContent = group.title;
 
-    const body = document.createElement("div");
-    body.className = "comparison-card__body";
+    const summary = document.createElement("p");
+    summary.textContent = group.summary;
 
-    const current = document.createElement("div");
-    current.className = "comparison-side comparison-side--current";
+    head.append(title, summary);
 
-    const currentLabel = document.createElement("h5");
-    currentLabel.textContent = "Antes";
+    const items = document.createElement("div");
+    items.className = "segment-items";
 
-    const currentText = document.createElement("p");
-    currentText.textContent = entry.current;
+    group.items.forEach((item) => {
+      const article = document.createElement("article");
+      article.className = "segment-item";
 
-    current.append(currentLabel, currentText);
+      const itemTitle = document.createElement("h5");
+      itemTitle.textContent = item.topic;
 
-    const proposal = document.createElement("div");
-    proposal.className = "comparison-side comparison-side--proposal";
+      const matrix = document.createElement("div");
+      matrix.className = "segment-matrix";
 
-    const proposalLabel = document.createElement("h5");
-    proposalLabel.textContent = "Propuesta";
+      const before = document.createElement("div");
+      before.className = "segment-cell";
+      before.innerHTML = `<span>Antes</span><p>${item.before}</p>`;
 
-    const proposalText = document.createElement("p");
-    proposalText.textContent = entry.proposal;
+      const now = document.createElement("div");
+      now.className = "segment-cell";
+      now.innerHTML = `<span>Ahora</span><p>${item.now}</p>`;
 
-    proposal.append(proposalLabel, proposalText);
-    body.append(current, proposal);
-    card.append(title, body);
-    fragment.appendChild(card);
-  });
+      const example = document.createElement("div");
+      example.className = "segment-cell";
+      example.innerHTML = `<span>Ejemplo</span><p>${item.example}</p>`;
 
-  comparisonCards.replaceChildren(fragment);
-}
-
-function renderTopicFilters() {
-  const fragment = document.createDocumentFragment();
-
-  const totalNotes = dashboardData.sections.reduce((sum, section) => sum + section.notes.length, 0);
-
-  const allButton = document.createElement("button");
-  allButton.type = "button";
-  allButton.role = "tab";
-  allButton.className = "topic-card";
-  allButton.dataset.topic = "all";
-  allButton.setAttribute("aria-selected", "true");
-  allButton.innerHTML = `
-    <span class="topic-card__title">Todos los bloques</span>
-    <span class="topic-card__meta"><span>Vista general</span><strong>${totalNotes} cambios</strong></span>
-  `;
-  fragment.appendChild(allButton);
-
-  dashboardData.sections.forEach((section) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.role = "tab";
-    button.className = "topic-card";
-    button.dataset.topic = section.id;
-    button.setAttribute("aria-selected", "false");
-    button.innerHTML = `
-      <span class="topic-card__title">${sectionShortLabel(section.label)}</span>
-      <span class="topic-card__meta"><span>Bloque temático</span><strong>${section.notes.length} cambios</strong></span>
-    `;
-    fragment.appendChild(button);
-  });
-
-  topicFilters.replaceChildren(fragment);
-
-  topicFilters.addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-topic]");
-
-    if (!button) {
-      return;
-    }
-
-    activeTopic = button.dataset.topic;
-
-    topicFilters.querySelectorAll("button").forEach((node) => {
-      node.setAttribute("aria-selected", String(node === button));
+      matrix.append(before, now, example);
+      article.append(itemTitle, matrix);
+      items.appendChild(article);
     });
 
-    renderChanges();
-  });
-}
-
-function renderChanges() {
-  const fragment = document.createDocumentFragment();
-  let results = 0;
-
-  dashboardData.sections.forEach((section) => {
-    if (activeTopic !== "all" && section.id !== activeTopic) {
-      return;
-    }
-
-    section.notes.forEach((note) => {
-      const details = document.createElement("details");
-      details.className = "change-item";
-
-      const summary = document.createElement("summary");
-
-      const left = document.createElement("div");
-
-      const scope = document.createElement("p");
-      scope.className = "change-item__scope";
-      scope.textContent = sectionShortLabel(section.label);
-
-      const title = document.createElement("h4");
-      title.textContent = note.title;
-
-      left.append(scope, title);
-
-      const action = document.createElement("span");
-      action.className = "change-item__action";
-      action.textContent = "Abrir detalle";
-
-      summary.append(left, action);
-
-      const content = document.createElement("div");
-      content.className = "change-item__content";
-
-      const detail = document.createElement("p");
-      detail.textContent = note.detail;
-
-      const tagRow = document.createElement("div");
-      tagRow.className = "tag-row";
-
-      note.tags.forEach((tag) => {
-        const badge = document.createElement("span");
-        badge.textContent = tag;
-        tagRow.appendChild(badge);
-      });
-
-      content.append(detail, tagRow);
-      details.append(summary, content);
-      fragment.appendChild(details);
-      results += 1;
-    });
+    block.append(head, items);
+    fragment.appendChild(block);
   });
 
-  if (!results) {
-    const empty = document.createElement("p");
-    empty.className = "empty";
-    empty.textContent = "No hay resultados para esa búsqueda en el bloque seleccionado.";
-    changeList.replaceChildren(empty);
-    return;
-  }
-
-  changeList.replaceChildren(fragment);
+  segmentBlocks.replaceChildren(fragment);
 }
 
 function renderLegalFramework() {
@@ -373,9 +277,8 @@ function init() {
   renderKpis();
   renderPartiesPie();
   renderCostBars();
-  renderComparisons();
-  renderTopicFilters();
-  renderChanges();
+  renderSegmentJump();
+  renderSegmentBlocks();
   renderLegalFramework();
   renderSources();
   setupRevealAnimation();
