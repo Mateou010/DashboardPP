@@ -1,5 +1,6 @@
 import { dashboardData } from "../data/lawData";
 import SegmentsExplorer from "../components/SegmentsExplorer";
+import ImportantArticlesCarousel from "../components/ImportantArticlesCarousel";
 
 const numberFormatter = new Intl.NumberFormat("es-AR");
 
@@ -98,7 +99,7 @@ export default function HomePage() {
 
       <main className="layout">
         <section className="section section--lead reveal is-visible">
-          <div>
+          <div className="lead-main">
             <p className="section-label">Resumen Ejecutivo</p>
             <h2>
               Lectura institucional del impacto normativo en partidos políticos,
@@ -118,31 +119,47 @@ export default function HomePage() {
               adecuación para partidos vigentes.
             </p>
           </div>
-          <div className="lead-actions">
-            <a href="#segmentos">Ir a comparación ley vs proyecto</a>
-            <a href="#graficos">Ir a gráficos</a>
-          </div>
+          <aside className="lead-side">
+            <div className="lead-meta-card">
+              <p className="lead-meta-card__kicker">Documento de referencia</p>
+              <dl>
+                <div>
+                  <dt>Referencia</dt>
+                  <dd>{dashboardData.reference}</dd>
+                </div>
+                <div>
+                  <dt>Actualizado</dt>
+                  <dd>{dashboardData.updatedAt}</dd>
+                </div>
+                <div>
+                  <dt>Alcance</dt>
+                  <dd>
+                    Partidos · Código electoral · Financiamiento · Parlasur · Transición
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div className="lead-actions">
+              <a href="#segmentos">Ir a Ley vs Proyecto</a>
+              <a href="#graficos">Ir a gráficos</a>
+            </div>
+          </aside>
         </section>
 
-        {/* ---------- Antes vs Ahora ---------- */}
+        {/* ---------- Ley vigente vs Proyecto de ley (sección destacada) ---------- */}
 
-        <section className="section reveal is-visible" id="segmentos">
-          <div className="section-top">
-            <p className="section-label">Comparación LEY vs PROYECTO</p>
-            <h3>Antes vs ahora, segmento por segmento</h3>
-            <p className="section-helper">
-              Cinco segmentos para revisar los cambios principales del régimen
-              vigente frente al proyecto.
-            </p>
-          </div>
-
+        <section
+          className="section section--featured reveal is-visible"
+          id="segmentos"
+          aria-label="Comparación Ley vigente vs Proyecto de ley"
+        >
           <SegmentsExplorer
             segmentGroups={dashboardData.segmentGroups}
             keyJumps={dashboardData.charts.keyJumps}
           />
         </section>
 
-        <section className="section reveal is-visible" id="kpis">
+        <section className="section section--alt reveal is-visible" id="kpis">
           <div className="section-top">
             <p className="section-label">Datos Estructurales</p>
             <h3>Escala electoral y costos de referencia</h3>
@@ -251,34 +268,35 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section reveal is-visible" id="marco">
-          <div className="section-top">
-            <p className="section-label">Marco Normativo</p>
-            <h3>Títulos del proyecto y alcance legal</h3>
+        <section
+          className="section section--alt section--bottom reveal is-visible"
+          id="articulos-importantes"
+        >
+          <div className="bottom-col">
+            <div className="section-top">
+              <p className="section-label">Artículos importantes</p>
+              <h3>Texto legal y comentario</h3>
+              <p className="section-helper">
+                Navegá artículo por artículo con flechas para ver la redacción legal y su explicación.
+              </p>
+            </div>
+            <ImportantArticlesCarousel items={dashboardData.importantArticles} />
           </div>
-          <ul className="title-list">
-            {dashboardData.legalFramework.map((entry) => (
-              <li key={entry.title}>
-                <strong>{entry.title}</strong>
-                <p>{entry.body}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
 
-        <section className="section reveal is-visible" id="fuentes">
-          <div className="section-top">
-            <p className="section-label">Fuente</p>
-            <h3>Documento base utilizado</h3>
+          <div className="bottom-col" id="fuentes">
+            <div className="section-top">
+              <p className="section-label">Fuente</p>
+              <h3>Documento base utilizado</h3>
+            </div>
+            <ul className="source-list">
+              {dashboardData.sources.map((source) => (
+                <li key={source.file}>
+                  <a href={`/${source.file}`}>{source.file}</a>
+                  <p>{source.note}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="source-list">
-            {dashboardData.sources.map((source) => (
-              <li key={source.file}>
-                <a href={`/${source.file}`}>{source.file}</a>
-                <p>{source.note}</p>
-              </li>
-            ))}
-          </ul>
         </section>
       </main>
 

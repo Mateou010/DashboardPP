@@ -399,6 +399,128 @@ export const dashboardData = {
       body: "Disposiciones finales y régimen de adecuación de partidos vigentes."
     }
   ],
+  importantArticles: [
+    {
+      article: "Artículo 1",
+      title: "Solicitud de creación de partido",
+      literal:
+        "Cambia el requisito del cuatro por mil para presentar la solicitud de creación del partido, establece un mínimo de Cincuenta (50) ciudadanos. Y agrega la obligación de que los fundadores estén individualizados y con DDJJ de que no están afiliados a ningún otro partido. (art. 7, ley 23.298).",
+      comment:
+        "Eleva la barrera inicial de entrada y refuerza controles de identidad y exclusividad de afiliación desde la constitución del partido."
+    },
+    {
+      article: "Artículo 2",
+      title: "Personería",
+      literal:
+        "Aumenta al 0,5% el número de electores necesarios para ser reconocido. Se considerará que ningún distrito cuenta con más de dos millones de electores. (art. 7 bis, ley 23.298).",
+      comment:
+        "Incrementa el umbral de afiliados para lograr personería y fija tope de cálculo para distritos de mayor tamaño."
+    },
+    {
+      article: "Artículo 7",
+      title: "Partidos nacionales",
+      literal:
+        "Eleva el requisito de estar reconocido en 5 a 10 distritos para transformarse en partidos nacionales y que la suma de sus afiliados represente al menos el 0,1% del Registro. Para conservar la personería jurídica el partido deberá cumplir permanentemente los requisitos (10 distritos + 0,1% del Registro).",
+      comment:
+        "Endurece la transición de partido distrital a nacional y vuelve permanente el cumplimiento de los requisitos para sostener la personería."
+    },
+    {
+      article: "Artículo 11",
+      title: "Moderniza la afiliación",
+      literal:
+        "Incorpora la posibilidad de comprobar la identidad por autenticación biométrica y la inscripción por medios electrónicos (a reglamentar).",
+      comment:
+        "Digitaliza el proceso de afiliación y habilita validación biométrica para trazabilidad e identificación."
+    },
+    {
+      article: "Artículo 14",
+      title: "Restricciones para ser candidato (Ficha Limpia)",
+      literal:
+        "Incorpora la prohibición de ser candidatos a las personas condenadas por delitos dolosos, con condena en segunda instancia, dictada antes del 31/12 del año anterior al proceso electoral. Si la condena es posterior, solo tendrá efecto con posterioridad al proceso electoral. La inelegibilidad durará hasta la revocación o el cumplimiento de la pena correspondiente.",
+      comment:
+        "Introduce una regla de inelegibilidad con corte temporal específico y mantiene el efecto hasta revocación o cumplimiento de pena."
+    },
+    {
+      article: "Artículo 16",
+      title: "Caducidad de los partidos",
+      literal:
+        "Eleva del 2% al 3% la cantidad de votos que debe obtener en al menos una de las dos últimas elecciones por cada partido. En el caso de alianzas electorales, los porcentajes por partido se adjudicarán conforme a lo acordado en la formación de la alianza.",
+      comment:
+        "Aumenta el umbral de supervivencia electoral y obliga a definir distribución de votos entre aliados."
+    },
+    {
+      article: "Artículo 23",
+      title: "Listas y avales",
+      literal:
+        "Las agrupaciones políticas solo podrán presentar UNA lista por categoría y los candidatos solo podrán serlo en UNA lista y en UNA categoría. Para presentar candidatos las agrupaciones deberán reunir avales: Senadores y Diputados Nacionales, cantidad de avales equivalente a su número de afiliados requerido por ley 23.298; para Presidente y Vicepresidente, lo mismo más lo requerido para obtener personería jurídica definitiva en al menos 10 distritos electorales. Un solo aval por elector. La CNE instrumentará una plataforma digital para el registro de avales.",
+      comment:
+        "Limita la multiplicidad de boletas por categoría y endurece la condición de avales para competir."
+    },
+    {
+      article: "Artículo 25",
+      title: "Boleta única",
+      literal:
+        "Elimina referencia a las PASO. Incorpora un casillero para votar lista completa.",
+      comment:
+        "Ajusta la boleta única al nuevo esquema sin PASO y simplifica el voto por oferta partidaria integral."
+    },
+    {
+      article: "Artículo 30",
+      title: "Campaña electoral y debate presidencial",
+      literal:
+        "Reemplaza el capítulo IV bis, de la campaña electoral y el debate presidencial obligatorio. Habilita la posibilidad de realizar publicidad en medios de comunicación incluso fuera del plazo de la campaña electoral. Elimina el debate presidencial obligatorio.",
+      comment:
+        "Amplía márgenes de comunicación política en medios y elimina la obligatoriedad del debate presidencial."
+    },
+    {
+      article: "Artículo 52",
+      title: "Tope de aportes privados",
+      literal:
+        "Eleva el monto máximo permitido por persona física o jurídica del 2% al 35% del monto que surja de multiplicar el valor del módulo electoral por la cantidad de electores registrados.",
+      comment:
+        "Expande de forma significativa el aporte privado máximo permitido por aportante."
+    },
+    {
+      article: "Artículo 55",
+      title: "Gastos en publicidad",
+      literal:
+        "Elimina la prohibición de realizar gastos en publicidad.",
+      comment:
+        "Desregula el gasto publicitario en campaña respecto de la restricción previa."
+    },
+    {
+      article: "Artículo 69",
+      title: "Derogaciones en financiamiento y campaña",
+      literal:
+        "Elimina el límite de gastos de campaña. Elimina el capítulo vinculado al financiamiento público de las campañas electorales y elimina el capítulo referido a la publicidad oficial en medios.",
+      comment:
+        "Desarma pilares del régimen de control previo y reduce instrumentos públicos de financiamiento y pauta."
+    },
+    {
+      article: "Artículo 71",
+      title: "ParlaSur",
+      literal:
+        "Los diputados del ParlaSur serán designados de entre los legisladores del Congreso Nacional hasta tanto el Consejo del Mercado Común establezca el \"Día del Mercosur\". La Cámara de Diputados cubrirá las vacantes de forma proporcional a la composición de la cámara. No recibirán un salario extra; la HCDN se hará cargo de los viáticos en los que incurrieren en ejercicio de su función. Entra en vigencia al vencimiento de los mandatos de los actuales diputados del ParlaSur.",
+      comment:
+        "Pasa de elección directa a designación legislativa transitoria y redefine su régimen económico."
+    },
+    {
+      article: "Artículo 75",
+      title: "Adecuación de agrupaciones vigentes",
+      literal:
+        "Otorga plazo hasta el 30 de junio de 2027 para adecuar las agrupaciones políticas existentes al cumplimiento de los nuevos requisitos para lograr y mantener su personería jurídica.",
+      comment:
+        "Establece una ventana de transición concreta para adaptación al nuevo marco."
+    },
+    {
+      article: "Artículo 77",
+      title: "Alcance ampliado de Ficha Limpia",
+      literal:
+        "Las personas inhibidas para ser candidatos conforme a lo establecido en esta ley (Ficha Limpia), no podrán ser designadas como Jefe de Gabinete de Ministros, Ministros, Secretarios, Subsecretarios, autoridades de entes y organismos descentralizados e instituciones de la seguridad social, integrantes de cuerpos colegiados, personal diplomático en actividad, directores de empresas o entes de participación estatal o funcionales equivalentes.",
+      comment:
+        "Extiende la inhabilitación más allá de las candidaturas, alcanzando nombramientos en alta función pública."
+    }
+  ],
   sources: [
     {
       file: "INLEG-2026-40722643-APN-PTE.pdf",
