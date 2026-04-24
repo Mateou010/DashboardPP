@@ -99,7 +99,7 @@ function SparkIcon() {
   );
 }
 
-export default function SegmentsExplorer({ segmentGroups }) {
+export default function SegmentsExplorer({ segmentGroups, keyJumps = [] }) {
   const [activeSegment, setActiveSegment] = useState(null);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const focusPanelRef = useRef(null);
@@ -121,6 +121,10 @@ export default function SegmentsExplorer({ segmentGroups }) {
 
   const currentItems = currentGroup ? sortedItemsBySegment[currentGroup.id] : [];
   const currentItem = currentItems[activeItemIndex] ?? null;
+  const currentJumps = useMemo(() => {
+    if (!currentGroup) return [];
+    return keyJumps.filter((jump) => jump.segment === currentGroup.id);
+  }, [currentGroup, keyJumps]);
 
   function openSegment(id) {
     setActiveSegment(id);
@@ -204,6 +208,9 @@ export default function SegmentsExplorer({ segmentGroups }) {
               </div>
               <h4 className="segment-card__title">{shortTitle}</h4>
               <p className="segment-card__summary">{group.summary}</p>
+              <p className="segment-card__idea">
+                <span>Idea central:</span> {group.coreIdea ?? group.summary}
+              </p>
               <span className="segment-card__cta" aria-hidden="true">
                 {isActive ? "Cerrar" : "Explorar"}
                 <ArrowIcon size={16} direction={isActive ? "down" : "right"} />
@@ -230,6 +237,9 @@ export default function SegmentsExplorer({ segmentGroups }) {
                   {currentGroup.title.split("·")[1]?.trim() ?? currentGroup.title}
                 </p>
                 <h4 className="segment-focus__topic">{currentItem.topic}</h4>
+                <p className="segment-focus__idea">
+                  <span>Idea central de la modificación:</span> {currentGroup.coreIdea ?? currentGroup.summary}
+                </p>
               </div>
               <button
                 type="button"
@@ -287,6 +297,46 @@ export default function SegmentsExplorer({ segmentGroups }) {
               </div>
               <p>{currentItem.example}</p>
             </div>
+
+            {currentJumps.length > 0 && (
+              <section className="segment-focus__jumps" aria-label="Saltos normativos del segmento">
+                <div className="segment-focus__jumps-head">
+                  <h5>Saltos normativos del segmento</h5>
+                  <p>
+                    Umbrales numéricos clave que cambian en este bloque.
+                  </p>
+                </div>
+                <div className="jumps-grid">
+                  {currentJumps.map((item) => {
+                    const goesUp = item.nowValue > item.beforeValue;
+                    return (
+                      <article className="jump-card" key={item.label}>
+                        <span
+                          className={`jump-delta${goesUp ? "" : " jump-delta--down"}`}
+                          aria-hidden="true"
+                        >
+                          {goesUp ? "Sube" : "Baja"}
+                        </span>
+                        <p className="jump-label">{item.label}</p>
+                        <div className="jump-compare">
+                          <div className="jump-cell jump-cell--before">
+                            <span>Antes</span>
+                            <strong>{item.beforeText}</strong>
+                          </div>
+                          <div className="jump-arrow" aria-hidden="true">
+                            <ArrowIcon size={18} />
+                          </div>
+                          <div className="jump-cell jump-cell--now">
+                            <span>Ahora</span>
+                            <strong>{item.nowText}</strong>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
 
             <footer className="segment-focus__nav">
               <button

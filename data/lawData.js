@@ -31,6 +31,7 @@ export const dashboardData = {
     keyJumps: [
       {
         label: "Afiliados para crear partido",
+        segment: "partidos",
         beforeValue: 0.4,
         beforeText: "0,4% (4 por mil)",
         nowValue: 0.5,
@@ -38,6 +39,7 @@ export const dashboardData = {
       },
       {
         label: "Distritos para orden nacional",
+        segment: "partidos",
         beforeValue: 5,
         beforeText: "5",
         nowValue: 10,
@@ -45,6 +47,7 @@ export const dashboardData = {
       },
       {
         label: "Caducidad por votos",
+        segment: "partidos",
         beforeValue: 2,
         beforeText: "2%",
         nowValue: 3,
@@ -52,6 +55,7 @@ export const dashboardData = {
       },
       {
         label: "Límite aporte privado",
+        segment: "financiamiento",
         beforeValue: 2,
         beforeText: "2%",
         nowValue: 35,
@@ -59,6 +63,7 @@ export const dashboardData = {
       },
       {
         label: "Veda sondeos pre elección",
+        segment: "financiamiento",
         beforeValue: 8,
         beforeText: "8 días",
         nowValue: 2,
@@ -72,6 +77,8 @@ export const dashboardData = {
       title: "Segmento 1 · Reforma de los Partidos Políticos",
       summary:
         "Más exigencias para creación, reconocimiento y sostenimiento de personerías partidarias.",
+      coreIdea:
+        "Establece criterios más restrictivos para la creación de partidos políticos, alianzas y confederaciones, y para convertir partidos distritales en nacionales.",
       items: [
         {
           topic: "Creación de partidos: fundadores y afiliados",
@@ -154,6 +161,8 @@ export const dashboardData = {
       title: "Segmento 2 · Código Electoral",
       summary:
         "Reordenamiento de oferta electoral, avales, reemplazos, boleta única y reglas de campaña.",
+      coreIdea:
+        "Reordena la oferta electoral y el régimen de candidaturas con nuevas exigencias de avales, lista única por categoría y ajustes en campaña.",
       items: [
         {
           topic: "Candidatos y listas",
@@ -210,6 +219,8 @@ export const dashboardData = {
       title: "Segmento 3 · Aportes de Campaña",
       summary:
         "Cambios en origen de fondos, topes, controles, veda, gastos y capítulos derogados.",
+      coreIdea:
+        "Redefine origen, límites y controles de aportes políticos, reduce obligaciones de financiamiento público y amplía el peso del aporte privado.",
       items: [
         {
           topic: "Renuncia al aporte público anual",
@@ -298,6 +309,8 @@ export const dashboardData = {
       title: "Segmento 4 · Parlasur",
       summary:
         "Cambios en estatus, inmunidades y modalidad de integración de parlamentarios.",
+      coreIdea:
+        "Elimina la elección directa al Parlasur y redefine su estatus institucional, inmunidades y régimen de viáticos.",
       items: [
         {
           topic: "Estatus e inmunidades",
@@ -331,6 +344,8 @@ export const dashboardData = {
       title: "Segmento 5 · Otras Disposiciones",
       summary:
         "Publicidad política y plazos de adecuación para fuerzas vigentes.",
+      coreIdea:
+        "Suprime obligaciones de cesión gratuita de espacios y fija plazos concretos para que los partidos vigentes adecuen su funcionamiento.",
       items: [
         {
           topic: "Espacios gratuitos en medios",

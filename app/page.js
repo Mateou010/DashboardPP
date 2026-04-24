@@ -77,50 +77,9 @@ function BarsIcon() {
   );
 }
 
-function ScaleIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="18"
-      height="18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 3v18" />
-      <path d="M6 8h12" />
-      <path d="M3 14l3-6 3 6a3 3 0 0 1-6 0z" />
-      <path d="M15 14l3-6 3 6a3 3 0 0 1-6 0z" />
-    </svg>
-  );
-}
-
-function ArrowIcon({ size = 20 }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width={size}
-      height={size}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14" />
-      <path d="M13 6l6 6-6 6" />
-    </svg>
-  );
-}
-
 export default function HomePage() {
   const parties = dashboardData.charts.partiesComposition;
   const costs = dashboardData.charts.electionCosts;
-  const jumps = dashboardData.charts.keyJumps;
 
   const maxCost = Math.max(...costs.map((item) => item.value));
   const sortedCosts = [...costs].sort((a, b) => b.value - a.value);
@@ -145,11 +104,42 @@ export default function HomePage() {
               Lectura institucional del impacto normativo en partidos políticos,
               código electoral, financiamiento y régimen de transición.
             </h2>
+            <p className="lead-text">
+              Este tablero está basado en el proyecto de ley enviado por el Poder
+              Ejecutivo Nacional para reformar el régimen electoral y de partidos
+              políticos. El contenido sistematiza el texto normativo en formato
+              comparado, con foco en cómo cambia el marco vigente.
+            </p>
+            <p className="lead-text">
+              Entre las principales reformas se incluyen: nuevos requisitos para la
+              creación y sostenimiento de partidos, eliminación de las PASO, cambios
+              en candidaturas, avales y boleta única, modificaciones al financiamiento
+              político y aportes privados, nuevo esquema para Parlasur y plazos de
+              adecuación para partidos vigentes.
+            </p>
           </div>
           <div className="lead-actions">
-            <a href="#segmentos">Ir a antes vs ahora</a>
+            <a href="#segmentos">Ir a comparación ley vs proyecto</a>
             <a href="#graficos">Ir a gráficos</a>
           </div>
+        </section>
+
+        {/* ---------- Antes vs Ahora ---------- */}
+
+        <section className="section reveal is-visible" id="segmentos">
+          <div className="section-top">
+            <p className="section-label">Comparación LEY vs PROYECTO</p>
+            <h3>Antes vs ahora, segmento por segmento</h3>
+            <p className="section-helper">
+              Cinco segmentos para revisar los cambios principales del régimen
+              vigente frente al proyecto.
+            </p>
+          </div>
+
+          <SegmentsExplorer
+            segmentGroups={dashboardData.segmentGroups}
+            keyJumps={dashboardData.charts.keyJumps}
+          />
         </section>
 
         <section className="section reveal is-visible" id="kpis">
@@ -174,8 +164,8 @@ export default function HomePage() {
             <p className="section-label">Visualizaciones</p>
             <h3>Composición del sistema y magnitudes de gasto</h3>
             <p className="section-helper">
-              Tres lecturas visuales: cuántos partidos componen el sistema, cuánto
-              cuestan las elecciones y qué umbrales cambian con la reforma.
+              Dos lecturas visuales: cuántos partidos componen el sistema y cuánto
+              cuestan las elecciones recientes.
             </p>
           </div>
 
@@ -258,68 +248,7 @@ export default function HomePage() {
                 ))}
               </div>
             </article>
-
-            {/* Saltos normativos */}
-            <article className="chart-card chart-card--jumps">
-              <header className="chart-header">
-                <div className="chart-icon">
-                  <ScaleIcon />
-                </div>
-                <div className="chart-header-text">
-                  <p className="chart-kicker">Cambios críticos</p>
-                  <h4>Saltos normativos: antes vs. ahora</h4>
-                </div>
-              </header>
-              <p className="chart-caption">
-                Umbrales clave donde el proyecto modifica valores numéricos del régimen vigente.
-              </p>
-
-              <div className="jumps-grid">
-                {jumps.map((item) => {
-                  const goesUp = item.nowValue > item.beforeValue;
-                  return (
-                    <article className="jump-card" key={item.label}>
-                      <span
-                        className={`jump-delta${goesUp ? "" : " jump-delta--down"}`}
-                        aria-hidden="true"
-                      >
-                        {goesUp ? "Sube" : "Baja"}
-                      </span>
-                      <p className="jump-label">{item.label}</p>
-                      <div className="jump-compare">
-                        <div className="jump-cell jump-cell--before">
-                          <span>Antes</span>
-                          <strong>{item.beforeText}</strong>
-                        </div>
-                        <div className="jump-arrow" aria-hidden="true">
-                          <ArrowIcon size={18} />
-                        </div>
-                        <div className="jump-cell jump-cell--now">
-                          <span>Ahora</span>
-                          <strong>{item.nowText}</strong>
-                        </div>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </article>
           </div>
-        </section>
-
-        {/* ---------- Antes vs Ahora ---------- */}
-
-        <section className="section reveal is-visible" id="segmentos">
-          <div className="section-top">
-            <p className="section-label">Explorador de cambios</p>
-            <h3>Antes vs ahora</h3>
-            <p className="section-helper">
-              Cinco segmentos a la vista. Tocá cualquiera para abrir un panel y navegar,
-              cambio por cambio, con flechas o el teclado.
-            </p>
-          </div>
-
-          <SegmentsExplorer segmentGroups={dashboardData.segmentGroups} />
         </section>
 
         <section className="section reveal is-visible" id="marco">

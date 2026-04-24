@@ -119,6 +119,13 @@ h1 {
   font-size: clamp(1.25rem, 2.8vw, 1.9rem);
 }
 
+.lead-text {
+  margin: 0.7rem 0 0;
+  color: var(--slate-700);
+  font-size: 0.98rem;
+  max-width: 88ch;
+}
+
 .lead-actions {
   display: flex;
   flex-wrap: wrap;
@@ -993,6 +1000,24 @@ h1 {
   color: rgba(246, 248, 252, 0.82);
 }
 
+.segment-card__idea {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #22406e;
+  border-top: 1px dashed #d7e2f0;
+  padding-top: 0.48rem;
+}
+
+.segment-card__idea span {
+  font-weight: 700;
+}
+
+.segment-card.is-active .segment-card__idea {
+  color: rgba(246, 248, 252, 0.92);
+  border-top-color: rgba(246, 248, 252, 0.32);
+}
+
 .segment-card__cta {
   margin-top: auto;
   display: inline-flex;
@@ -1080,6 +1105,17 @@ h1 {
   color: #0f1e3a;
   margin: 0;
   text-wrap: balance;
+}
+
+.segment-focus__idea {
+  margin: 0.5rem 0 0;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: #24436f;
+}
+
+.segment-focus__idea span {
+  font-weight: 700;
 }
 
 .segment-focus__close {
@@ -1215,6 +1251,28 @@ h1 {
 
 .focus-cell--example p {
   color: #4b3306;
+}
+
+.segment-focus__jumps {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.segment-focus__jumps-head {
+  display: grid;
+  gap: 0.24rem;
+}
+
+.segment-focus__jumps-head h5 {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--navy-900);
+}
+
+.segment-focus__jumps-head p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--muted);
 }
 
 .focus-cell__arrow {
