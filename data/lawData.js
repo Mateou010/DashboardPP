@@ -1,7 +1,7 @@
 export const dashboardData = {
   projectName: "Reforma Electoral Integral",
   reference: "INLEG-2026-40722643-APN-PTE",
-  updatedAt: "23/04/2026",
+  updatedAt: "24/04/2026",
   summary:
     "Proyecto de reforma integral con cambios en la ley de partidos, código electoral, financiamiento de campaña, régimen Parlasur y disposiciones de transición.",
   kpis: [
@@ -15,6 +15,19 @@ export const dashboardData = {
     { label: "Confección BUP", value: 43000, format: "millions_ars_iva" },
     { label: "Adecuación partidos vigentes", value: "Hasta 30/06/2027" }
   ],
+  charts: {
+    partiesComposition: [
+      { label: "Partidos distritales", value: 700, color: "#2b6f6a" },
+      { label: "Partidos nacionales", value: 45, color: "#c96a38" }
+    ],
+    electionCosts: [
+      { label: "Elección 2023 (total)", value: 422537, color: "#5b6f95" },
+      { label: "Elección 2025 (total)", value: 395133, color: "#2b6f6a" },
+      { label: "Correo 2025", value: 223006, color: "#c96a38" },
+      { label: "INDRA 2025", value: 21000, color: "#9a3e2a" },
+      { label: "BUP 2025", value: 43000, color: "#2f4f72" }
+    ]
+  },
   comparisons: [
     {
       topic: "Creación de partidos distritales",
@@ -108,8 +121,7 @@ export const dashboardData = {
       notes: [
         {
           title: "Lista única por categoría",
-          detail:
-            "Cada agrupación política solo puede presentar una lista por categoría de cargo.",
+          detail: "Cada agrupación política solo puede presentar una lista por categoría de cargo.",
           tags: ["Oferta electoral"]
         },
         {
@@ -133,7 +145,7 @@ export const dashboardData = {
         {
           title: "Boleta única y campaña",
           detail:
-            "Incorpora casillero de lista completa, sorteo de orden y cambios en plazos/sanciones de publicidad electoral.",
+            "Incorpora casillero de lista completa, sorteo de orden y cambios en plazos y sanciones de publicidad electoral.",
           tags: ["Gestión electoral", "Comunicación"]
         }
       ]
@@ -157,7 +169,7 @@ export const dashboardData = {
         {
           title: "Nuevos sujetos prohibidos",
           detail:
-            "Amplía restricciones para aportantes extranjeros, controlados por extranjeros y condenados/procesados por delitos específicos.",
+            "Amplía restricciones para aportantes extranjeros, controlados por extranjeros y condenados o procesados por delitos específicos.",
           tags: ["Compliance"]
         },
         {
@@ -187,7 +199,7 @@ export const dashboardData = {
         {
           title: "Privilegios e inmunidades",
           detail:
-            "Elimina equiparación de privilegios con diputados nacionales y modifica esquema de viáticos/salarios.",
+            "Elimina equiparación de privilegios con diputados nacionales y modifica esquema de viáticos y salarios.",
           tags: ["Régimen institucional"]
         }
       ]
@@ -198,8 +210,7 @@ export const dashboardData = {
       notes: [
         {
           title: "Espacios gratuitos en medios",
-          detail:
-            "Elimina obligación de cesión gratuita de espacios para campaña.",
+          detail: "Elimina obligación de cesión gratuita de espacios para campaña.",
           tags: ["Medios", "Campaña"]
         },
         {
@@ -245,10 +256,6 @@ export const dashboardData = {
     {
       file: "INLEG-2026-40722643-APN-PTE.pdf",
       note: "Texto del proyecto de ley (Poder Ejecutivo Nacional)."
-    },
-    {
-      file: "datos a incluir en el dashboard.docx",
-      note: "Resumen operativo de cambios y datos de contexto utilizados en esta versión del tablero."
     }
   ]
 };

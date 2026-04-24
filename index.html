@@ -35,7 +35,7 @@
           </h2>
         </div>
         <div class="lead-actions">
-          <a href="#explorador">Ir al explorador</a>
+          <a href="#explorador">Ir a bloques temáticos</a>
           <a href="#comparativas">Ver comparativas clave</a>
         </div>
       </section>
@@ -48,38 +48,64 @@
         <div id="kpi-list" class="kpi-grid" aria-live="polite"></div>
       </section>
 
+      <section class="section reveal" id="graficos">
+        <div class="section-top">
+          <p class="section-label">Visualizaciones</p>
+          <h3>Lectura rápida con gráficos</h3>
+        </div>
+        <div class="chart-grid">
+          <article class="chart-card">
+            <h4>Composición estimada de partidos vigentes</h4>
+            <p class="chart-caption">
+              Relación entre partidos nacionales y distritales informados en el resumen del proyecto.
+            </p>
+            <div class="pie-layout">
+              <div id="parties-pie" class="pie-chart" role="img" aria-label="Gráfico de torta de composición de partidos">
+                <span id="parties-total"></span>
+              </div>
+              <ul id="parties-legend" class="chart-legend"></ul>
+            </div>
+          </article>
+
+          <article class="chart-card">
+            <h4>Costos electorales recientes</h4>
+            <p class="chart-caption">
+              Montos en millones de ARS para comparar magnitudes de gasto y contratación electoral.
+            </p>
+            <div id="costs-bars" class="bar-chart" role="img" aria-label="Gráfico de barras de costos electorales"></div>
+          </article>
+        </div>
+      </section>
+
       <section class="section reveal" id="comparativas">
         <div class="section-top">
           <p class="section-label">Comparativas</p>
           <h3>Antes vs propuesta</h3>
+          <p class="section-helper">
+            Cada tarjeta muestra el régimen actual frente al cambio propuesto para ese tema.
+          </p>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Tema</th>
-                <th>Régimen actual</th>
-                <th>Proyecto</th>
-              </tr>
-            </thead>
-            <tbody id="comparison-body"></tbody>
-          </table>
-        </div>
+        <div id="comparison-cards" class="comparison-grid" aria-live="polite"></div>
       </section>
 
       <section class="section reveal" id="explorador">
         <div class="section-top">
           <p class="section-label">Explorador</p>
           <h3>Cambios por bloque temático</h3>
+          <p class="section-helper">
+            Elegí un bloque a la izquierda y abrí cada cambio para ver su detalle.
+          </p>
         </div>
-        <div class="explorer-controls">
-          <div id="topic-filters" class="topic-filters" role="tablist" aria-label="Filtros por bloque"></div>
-          <label class="search-input">
-            <span>Buscar cambio</span>
-            <input id="search-input" type="search" placeholder="Ejemplo: PASO, alianzas, aportes" />
-          </label>
+        <div class="explorer-layout">
+          <div id="topic-filters" class="topic-grid" role="tablist" aria-label="Filtros por bloque"></div>
+          <div class="explorer-panel">
+            <label class="search-input">
+              <span>Buscar cambio</span>
+              <input id="search-input" type="search" placeholder="Ejemplo: PASO, alianzas, aportes" />
+            </label>
+            <div id="change-list" class="change-list" aria-live="polite"></div>
+          </div>
         </div>
-        <div id="change-list" class="change-list" aria-live="polite"></div>
       </section>
 
       <section class="section reveal" id="marco">
@@ -92,8 +118,8 @@
 
       <section class="section reveal" id="fuentes">
         <div class="section-top">
-          <p class="section-label">Fuentes</p>
-          <h3>Archivos utilizados en esta versión</h3>
+          <p class="section-label">Fuente</p>
+          <h3>Documento utilizado en esta versión</h3>
         </div>
         <ul id="source-list" class="source-list"></ul>
       </section>

@@ -9,7 +9,14 @@ Dashboard web estático para visualizar los cambios del proyecto `INLEG-2026-407
 - `main.js`: render dinámico, filtros y buscador.
 - `data/lawData.js`: fuente única de datos del tablero.
 - `INLEG-2026-40722643-APN-PTE.pdf`: proyecto de ley.
-- `datos a incluir en el dashboard.docx`: documento de apoyo con síntesis y datos.
+
+## Cambios visuales de esta versión
+
+- Se agregó visualización de gráficos:
+  - torta para composición de partidos.
+  - barras para costos electorales.
+- Se rediseñó `Antes vs propuesta` en formato de tarjetas comparativas.
+- Se rediseñó `Cambios por bloque temático` con bloques clickeables y detalle expandible.
 
 ## Desarrollo local
 
