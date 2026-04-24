@@ -62,12 +62,12 @@ export const dashboardData = {
         nowText: "35%"
       },
       {
-        label: "Veda sondeos pre elección",
+        label: "Veda electoral y anuncios en medios",
         segment: "financiamiento",
-        beforeValue: 8,
-        beforeText: "8 días",
+        beforeValue: 35,
+        beforeText: "35 días (avisos) / 8 días (sondeos)",
         nowValue: 2,
-        nowText: "48 hs"
+        nowText: "Sin plazo previo (avisos) / 48 hs (sondeos)"
       }
     ]
   },
@@ -78,7 +78,7 @@ export const dashboardData = {
       summary:
         "Más exigencias para creación, reconocimiento y sostenimiento de personerías partidarias.",
       coreIdea:
-        "Establece criterios más restrictivos para la creación de partidos políticos, alianzas y confederaciones, y para convertir partidos distritales en nacionales.",
+        "Establece criterios más restrictivos para la creación de partidos políticos, alianzas y confederaciones, para convertir partidos distritales en nacionales y moderniza mecanismos de afiliación.",
       items: [
         {
           topic: "Creación de partidos: fundadores y afiliados",
@@ -119,30 +119,13 @@ export const dashboardData = {
             "Una fuerza de distrito ya no podría sostener estrategia nacional aliándose con un partido de orden nacional."
         },
         {
-          topic: "Afiliaciones digitales y biométricas",
+          topic: "Modernización de la participación política (afiliación digital y biométrica)",
           priority: 2,
           before: "El esquema tradicional no explicitaba afiliación electrónica con autenticación biométrica.",
           now:
             "Se habilitan factores biométricos y ficha electrónica; la reglamentación definirá modalidades de aplicación.",
           example:
             "La validación de identidad podría realizarse por canales digitales definidos por la reglamentación."
-        },
-        {
-          topic: "PASO",
-          priority: 1,
-          before: "Regían Primarias Abiertas, Simultáneas y Obligatorias.",
-          now: "Se eliminan PASO; cada partido define internamente su sistema de selección de candidatos.",
-          example:
-            "Una agrupación podría elegir candidaturas mediante congreso partidario, internas cerradas u otro mecanismo interno."
-        },
-        {
-          topic: "Ficha Limpia",
-          priority: 1,
-          before: "No regía esta inhabilidad con los mismos supuestos y alcance institucional.",
-          now:
-            "No pueden ser candidatos condenados por delitos dolosos con segunda instancia dictada antes del 31/12 del año no electoral. Recursos no suspenden efectos. La inelegibilidad rige hasta cumplimiento o revocación.",
-          example:
-            "También se extiende a designaciones en cargos como Jefatura de Gabinete, ministros, secretarios, autoridades de entes y directores con participación estatal."
         },
         {
           topic: "Caducidad de partidos",
@@ -158,11 +141,11 @@ export const dashboardData = {
     },
     {
       id: "codigo",
-      title: "Segmento 2 · Código Electoral",
+      title: "Segmento 2 · Código Electoral y Reglas de Competencia",
       summary:
-        "Reordenamiento de oferta electoral, avales, reemplazos, boleta única y reglas de campaña.",
+        "Reordenamiento de oferta electoral, avales, reemplazos, boleta única y reglas de competencia electoral.",
       coreIdea:
-        "Reordena la oferta electoral y el régimen de candidaturas con nuevas exigencias de avales, lista única por categoría y ajustes en campaña.",
+        "Reordena la oferta electoral y el régimen de candidaturas con nuevas exigencias de avales, lista única por categoría y cambios en selección e inelegibilidad.",
       items: [
         {
           topic: "Candidatos y listas",
@@ -203,6 +186,33 @@ export const dashboardData = {
             "Dos agrupaciones con idéntica categoría podrían diferenciarse por color elegido y posición sorteada."
         },
         {
+          topic: "PASO",
+          priority: 1,
+          before: "Regían Primarias Abiertas, Simultáneas y Obligatorias.",
+          now: "Se eliminan PASO; cada partido define internamente su sistema de selección de candidatos.",
+          example:
+            "Una agrupación podría elegir candidaturas mediante congreso partidario, internas cerradas u otro mecanismo interno."
+        },
+        {
+          topic: "Ficha Limpia",
+          priority: 1,
+          before: "No regía esta inhabilidad con los mismos supuestos y alcance institucional.",
+          now:
+            "No pueden ser candidatos condenados por delitos dolosos con segunda instancia dictada antes del 31/12 del año no electoral. Recursos no suspenden efectos. La inelegibilidad rige hasta cumplimiento o revocación.",
+          example:
+            "También se extiende a designaciones en cargos como Jefatura de Gabinete, ministros, secretarios, autoridades de entes y directores con participación estatal."
+        }
+      ]
+    },
+    {
+      id: "financiamiento",
+      title: "Segmento 3 · Campañas Electorales y Aportes",
+      summary:
+        "Cambios en reglas de campaña, pauta en medios, origen de fondos, topes, controles, veda y gastos.",
+      coreIdea:
+        "Reconfigura la campaña electoral en medios y el esquema de financiamiento político, con menos obligaciones públicas y mayor centralidad de aportes privados.",
+      items: [
+        {
           topic: "Campaña electoral y sanciones",
           priority: 1,
           before:
@@ -211,17 +221,25 @@ export const dashboardData = {
             "Se eliminan esos plazos previos; se agregan multas de 2.000 a 50.000 módulos por infracciones, se aumentan multas a personas humanas y se eliminan sanciones a dueños de medios; se elimina la inhabilitación temporal para recibir cierto financiamiento de campaña.",
           example:
             "Una infracción publicitaria podría derivar en multa económica alta sin activar sanción de bloqueo de financiamiento por 1-2 años."
-        }
-      ]
-    },
-    {
-      id: "financiamiento",
-      title: "Segmento 3 · Aportes de Campaña",
-      summary:
-        "Cambios en origen de fondos, topes, controles, veda, gastos y capítulos derogados.",
-      coreIdea:
-        "Redefine origen, límites y controles de aportes políticos, reduce obligaciones de financiamiento público y amplía el peso del aporte privado.",
-      items: [
+        },
+        {
+          topic: "Veda electoral (anuncios y sondeos)",
+          priority: 1,
+          before:
+            "La pauta publicitaria tenía plazos previos de restricción (35 días) y los sondeos quedaban vedados desde 8 días antes hasta 3 horas después de la elección.",
+          now:
+            "Se eliminan los plazos previos para avisos en medios y la veda de sondeos se reduce a 48 horas antes y 2 horas después.",
+          example:
+            "La comunicación electoral puede extenderse más cerca de la elección, con ventana más corta de restricción para sondeos."
+        },
+        {
+          topic: "Eliminación de campaña en medios gratis",
+          priority: 1,
+          before: "Existía obligación de ceder espacios gratuitos de campaña en medios.",
+          now: "Se elimina esa obligación de cesión gratuita.",
+          example:
+            "La planificación de campaña deja de contar con una cuota obligatoria de espacios gratuitos en radio y TV."
+        },
         {
           topic: "Renuncia al aporte público anual",
           priority: 2,
@@ -274,14 +292,6 @@ export const dashboardData = {
           now: "Se habilitan aportes vía bancos distintos al BNA, con adecuación a normativa UIF.",
           example:
             "La entidad financiera interviniente debería aplicar controles compatibles con prevención de lavado y trazabilidad."
-        },
-        {
-          topic: "Veda de sondeos",
-          priority: 2,
-          before: "Desde 8 días antes de la elección hasta 3 horas después.",
-          now: "Desde 48 horas antes hasta 2 horas después.",
-          example:
-            "La ventana de restricción previa se comprime de 8 días a 2 días."
         },
         {
           topic: "Gastos de terceros",
@@ -343,18 +353,10 @@ export const dashboardData = {
       id: "otras",
       title: "Segmento 5 · Otras Disposiciones",
       summary:
-        "Publicidad política y plazos de adecuación para fuerzas vigentes.",
+        "Disposiciones transitorias y plazos de adecuación para fuerzas vigentes.",
       coreIdea:
-        "Suprime obligaciones de cesión gratuita de espacios y fija plazos concretos para que los partidos vigentes adecuen su funcionamiento.",
+        "Fija plazos concretos para que los partidos vigentes adecuen su funcionamiento al nuevo régimen.",
       items: [
-        {
-          topic: "Espacios gratuitos en medios",
-          priority: 2,
-          before: "Existía obligación de ceder espacios gratuitos de campaña.",
-          now: "Se elimina esa obligación.",
-          example:
-            "La planificación de pauta deja de contar con esa reserva forzosa de espacios cedidos por medios."
-        },
         {
           topic: "Adecuación de partidos vigentes",
           priority: 1,
